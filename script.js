@@ -224,6 +224,11 @@ document.querySelector('.search-input')?.addEventListener('keydown', e => {
 function subscribeNewsletter(e) {
   e.preventDefault();
   const email = e.target.querySelector('input').value;
+  sendEmail(
+    'trucktireswarehouse@gmail.com',
+    'New Newsletter Subscriber',
+    '<h2>New Newsletter Subscription</h2><p><strong>Email:</strong> ' + email + '</p><p>Subscribed from the website footer.</p>'
+  );
   showToast('Thank you for subscribing, ' + email + '!', 'success');
   e.target.reset();
   return false;
@@ -283,6 +288,16 @@ async function registerUser(event) {
   localStorage.setItem(AUTH_USERS_KEY, JSON.stringify(users));
   localStorage.setItem(AUTH_SESSION_KEY, JSON.stringify({ name, email, company, plan }));
   updateAuthUI();
+  sendEmail(
+    'trucktireswarehouse@gmail.com',
+    'New Member Signup: ' + name,
+    '<h2>New Member Registration</h2>' +
+    '<p><strong>Name:</strong> ' + name + '</p>' +
+    '<p><strong>Email:</strong> ' + email + '</p>' +
+    '<p><strong>Company:</strong> ' + (company || 'Not provided') + '</p>' +
+    '<p><strong>Plan:</strong> ' + plan + '</p>' +
+    '<p><strong>Date:</strong> ' + new Date().toLocaleString() + '</p>'
+  );
   showToast('Account created successfully.', 'success');
   setTimeout(() => { window.location.href = 'account.html'; }, 500);
   return false;
@@ -305,6 +320,19 @@ function signOut() {
   localStorage.removeItem(AUTH_SESSION_KEY);
   updateAuthUI();
   showToast('You have been signed out.', 'success');
+}
+
+// --- Email via Titan SMTP (SmtpJS) ---
+function sendEmail(to, subject, body) {
+  return Email.send({
+    Host: 'smtp.titan.email',
+    Username: 'info@doublecoins-heavyduty.com',
+    Password: 'Talktome@123',
+    To: to,
+    From: 'info@doublecoins-heavyduty.com',
+    Subject: subject,
+    Body: body
+  });
 }
 
 // --- Toast ---

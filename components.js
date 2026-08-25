@@ -185,6 +185,13 @@ function headerSearch() {
 function subscribeNewsletter(e) {
   e.preventDefault();
   const email = e.target.querySelector('input').value;
+  if (typeof sendEmail === 'function') {
+    sendEmail(
+      'trucktireswarehouse@gmail.com',
+      'New Newsletter Subscriber',
+      '<h2>New Newsletter Subscription</h2><p><strong>Email:</strong> ' + email + '</p><p>Subscribed from the website footer.</p>'
+    );
+  }
   showToast('Thank you for subscribing!', 'success');
   e.target.reset();
 }

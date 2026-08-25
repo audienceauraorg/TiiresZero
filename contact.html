@@ -128,12 +128,48 @@
 <div id="site-footer"></div>
 <script src="components.js"></script>
 <script src="products.generated.js"></script><script src="products.js"></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
 <script src="script.js"></script>
 <script>
 function sendMessage(e) {
   e.preventDefault();
-  showToast('Message sent! We\'ll respond within 1 business day.', 'success');
-  e.target.reset();
+  const form = e.target;
+  const firstName = form.querySelector('input[type="text"]').value.trim();
+  const lastName = form.querySelectorAll('input[type="text"]')[1]?.value.trim() || '';
+  const email = form.querySelector('input[type="email"]').value.trim();
+  const phone = form.querySelector('input[type="tel"]').value.trim();
+  const subject = form.querySelector('select').value;
+  const orderNum = form.querySelectorAll('input[type="text"]')[2]?.value.trim() || '';
+  const message = form.querySelector('textarea').value.trim();
+  const btn = form.querySelector('.btn-send');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  sendEmail(
+    'trucktireswarehouse@gmail.com',
+    'Contact Form: ' + subject,
+    '<h2>New Contact Form Submission</h2>' +
+    '<p><strong>Name:</strong> ' + firstName + ' ' + lastName + '</p>' +
+    '<p><strong>Email:</strong> ' + email + '</p>' +
+    '<p><strong>Phone:</strong> ' + (phone || 'Not provided') + '</p>' +
+    '<p><strong>Subject:</strong> ' + subject + '</p>' +
+    '<p><strong>Order #:</strong> ' + (orderNum || 'N/A') + '</p>' +
+    '<hr>' +
+    '<p><strong>Message:</strong></p>' +
+    '<p>' + message.replace(/\n/g, '<br>') + '</p>'
+  ).then(function(r) {
+    if (r === 'OK') {
+      showToast('Message sent! We\'ll respond within 1 business day.', 'success');
+      form.reset();
+    } else {
+      showToast('Failed to send. Please try again or email us directly.', '');
+    }
+    btn.disabled = false;
+    btn.textContent = 'Send Message';
+  }).catch(function() {
+    showToast('Failed to send. Please try again or email us directly.', '');
+    btn.disabled = false;
+    btn.textContent = 'Send Message';
+  });
 }
 </script>
 </body>
