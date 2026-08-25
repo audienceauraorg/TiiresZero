@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Financing - Double Coin Heavy Duty Truck Warehouse</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    .fin-hero{background:linear-gradient(135deg,#1a1a1a,#2d2d2d);color:#fff;padding:56px 0;text-align:center;}
+    .fin-hero h1{font-size:36px;font-weight:700;margin-bottom:10px;}
+    .fin-hero p{font-size:15px;color:#aaa;max-width:520px;margin:0 auto;}
+    .fin-partners{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:48px;}
+    .fin-card{border:2px solid #e0e0e0;border-radius:10px;padding:36px;background:#fff;}
+    .fin-logo{font-size:30px;font-weight:700;margin-bottom:6px;}
+    .fin-card h3{font-size:18px;font-weight:700;margin-bottom:12px;}
+    .fin-card p{font-size:14px;color:#555;line-height:1.7;margin-bottom:20px;}
+    .fin-steps{display:flex;flex-direction:column;gap:12px;margin-bottom:24px;}
+    .fin-step{display:flex;align-items:flex-start;gap:12px;font-size:13px;color:#444;}
+    .step-circle{background:#e60000;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+    .calc-section{background:#f9f9f9;border:1px solid #e0e0e0;border-radius:10px;padding:32px;margin-bottom:48px;}
+    .calc-title{font-size:20px;font-weight:700;margin-bottom:20px;}
+    .calc-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;}
+    .calc-input{display:flex;flex-direction:column;gap:6px;}
+    .calc-input label{font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.4px;}
+    .calc-input input,.calc-input select{padding:11px 13px;border:1px solid #ddd;border-radius:4px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;}
+    .calc-result{background:#1a1a1a;color:#fff;border-radius:8px;padding:20px;text-align:center;}
+    .calc-result .amount{font-size:32px;font-weight:700;color:#e60000;}
+    .calc-result .note{font-size:12px;color:#aaa;margin-top:6px;}
+    .btn-apply{background:#e60000;color:#fff;border:none;padding:13px 28px;border-radius:4px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.5px;transition:background .2s;}
+    .btn-apply:hover{background:#cc0000;}
+    @media(max-width:800px){.fin-partners,.calc-row{grid-template-columns:1fr;}}
+    @media(max-width:768px){
+      .fin-hero h1{font-size:26px;}
+      .fin-hero{padding:36px 0;}
+      .fin-card{padding:24px;}
+      .calc-section{padding:20px;}
+      .calc-result .amount{font-size:26px;}
+    }
+    @media(max-width:480px){
+      .fin-hero h1{font-size:22px;}
+    }
+  </style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<div class="fin-hero">
+  <div class="container">
+    <h1>Buy Now, Pay Over Time</h1>
+    <p>Flexible financing options to help you get the commercial truck tires you need today without breaking the bank.</p>
+  </div>
+</div>
+
+<div class="section" style="padding:52px 0 60px">
+  <div class="container">
+
+    <h2 class="section-title">Financing Partners</h2>
+    <div class="fin-partners">
+
+      <div class="fin-card">
+        <div class="fin-logo" style="color:#ff6600">Katapult</div>
+        <h3>Lease-to-Own Financing</h3>
+        <p>No credit needed! Katapult offers a lease-to-own program that lets you get your tires now and pay over time with flexible payment options.</p>
+        <div class="fin-steps">
+          <div class="fin-step"><div class="step-circle">1</div> Add tires to your cart and proceed to checkout</div>
+          <div class="fin-step"><div class="step-circle">2</div> Select Katapult as your payment method</div>
+          <div class="fin-step"><div class="step-circle">3</div> Apply in 60 seconds — no hard credit pull</div>
+          <div class="fin-step"><div class="step-circle">4</div> Get instant approval and your tires ship today</div>
+        </div>
+        <ul style="font-size:13px;color:#555;padding-left:18px;line-height:2;margin-bottom:20px">
+          <li>No credit required</li>
+          <li>Instant approval decision</li>
+          <li>Flexible payment schedule</li>
+          <li>Early purchase options available</li>
+        </ul>
+        <button class="btn-apply" onclick="showToast('Redirecting to Katapult...','success')">Apply with Katapult</button>
+      </div>
+
+      <div class="fin-card">
+        <div class="fin-logo" style="color:#003087">PayPal</div>
+        <h3>Pay in 4 — Interest Free</h3>
+        <p>Split your purchase into 4 equal, interest-free payments with PayPal Pay Later. No fees when you pay on time.</p>
+        <div class="fin-steps">
+          <div class="fin-step"><div class="step-circle">1</div> Shop and add tires to your cart</div>
+          <div class="fin-step"><div class="step-circle">2</div> Select PayPal at checkout</div>
+          <div class="fin-step"><div class="step-circle">3</div> Choose "Pay in 4" option</div>
+          <div class="fin-step"><div class="step-circle">4</div> Pay 25% now, 3 payments every 2 weeks</div>
+        </div>
+        <ul style="font-size:13px;color:#555;padding-left:18px;line-height:2;margin-bottom:20px">
+          <li>0% interest — ever</li>
+          <li>No impact on credit score</li>
+          <li>Available on purchases $30-$1,500</li>
+          <li>Automatic payments</li>
+        </ul>
+        <button class="btn-apply" style="background:#003087;" onclick="showToast('Redirecting to PayPal...','success')">Apply with PayPal</button>
+      </div>
+
+    </div>
+
+    <!-- Payment Calculator -->
+    <div class="calc-section">
+      <div class="calc-title">Estimate Your Payment</div>
+      <div class="calc-row">
+        <div class="calc-input"><label>Purchase Total ($)</label><input type="number" id="calcTotal" value="1200" oninput="calcPayment()"/></div>
+        <div class="calc-input"><label>Payment Plan</label>
+          <select id="calcPlan" onchange="calcPayment()">
+            <option value="4">PayPal Pay in 4</option>
+            <option value="6">6 Months</option>
+            <option value="12">12 Months</option>
+            <option value="24">24 Months</option>
+          </select>
+        </div>
+        <div class="calc-result">
+          <div>Estimated payment</div>
+          <div class="amount" id="calcResult">$300</div>
+          <div class="note" id="calcNote">4 payments of $300.00</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:#999">* Estimates only. Actual terms depend on approval and financing partner. Interest may apply for longer terms.</p>
+    </div>
+
+    <!-- FAQ -->
+    <h2 class="section-title">Financing FAQ</h2>
+    <div style="max-width:700px;margin:0 auto">
+      <div class="faq-item" style="border-bottom:1px solid #e0e0e0;padding:18px 0">
+        <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:10px">Is there a minimum purchase amount for financing?</div>
+        <p style="font-size:14px;color:#555;line-height:1.7">PayPal Pay in 4 is available on orders between $30 and $1,500. Katapult has no minimum purchase amount for their lease-to-own program.</p>
+      </div>
+      <div class="faq-item" style="border-bottom:1px solid #e0e0e0;padding:18px 0">
+        <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:10px">Will applying affect my credit score?</div>
+        <p style="font-size:14px;color:#555;line-height:1.7">PayPal Pay in 4 uses a soft credit check that does not affect your credit score. Katapult's lease-to-own program does not require a credit check at all.</p>
+      </div>
+      <div class="faq-item" style="border-bottom:1px solid #e0e0e0;padding:18px 0">
+        <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:10px">How quickly can I get my tires if I finance?</div>
+        <p style="font-size:14px;color:#555;line-height:1.7">Financing approvals are typically instant. Once approved, your order ships within 1-2 business days, the same as any other order.</p>
+      </div>
+      <div class="faq-item" style="padding:18px 0">
+        <div style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:10px">Can I return tires purchased with financing?</div>
+        <p style="font-size:14px;color:#555;line-height:1.7">Yes. Our standard 45-day return policy applies to all purchases, including financed orders. The refund will be processed back through your financing provider.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="components.js"></script>
+<script src="products.generated.js"></script><script src="products.js"></script>
+<script src="script.js"></script>
+<script>
+function calcPayment() {
+  const total = parseFloat(document.getElementById('calcTotal').value) || 0;
+  const months = parseInt(document.getElementById('calcPlan').value);
+  const interest = months <= 4 ? 0 : months <= 6 ? 0.02 : months <= 12 ? 0.05 : 0.1;
+  const withInt = total * (1 + interest);
+  const payment = withInt / months;
+  document.getElementById('calcResult').textContent = '$' + payment.toFixed(2);
+  document.getElementById('calcNote').textContent = `${months} payments of $${payment.toFixed(2)}` + (interest>0 ? ` (${(interest*100).toFixed(0)}% interest)` : ' interest-free');
+}
+calcPayment();
+</script>
+</body>
+</html>

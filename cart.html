@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart - Double Coin Heavy Duty Truck Warehouse</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    .cart-page-layout{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:flex-start;}
+    .cart-table{width:100%;border-collapse:collapse;}
+    .cart-table th{text-align:left;padding:12px 16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#999;background:#f5f5f5;border-bottom:2px solid #e0e0e0;}
+    .cart-table td{padding:16px;border-bottom:1px solid #f0f0f0;vertical-align:middle;}
+    .ct-product{display:flex;align-items:center;gap:14px;}
+    .ct-img{width:72px;height:72px;background:#f5f5f5;border:1px solid #e0e0e0;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;}
+    .ct-img img{width:66px;height:66px;object-fit:contain;display:block;}
+    .ct-name{font-size:14px;font-weight:600;color:#1a1a1a;}
+    .ct-brand{font-size:12px;color:#999;}
+    .ct-price{font-size:15px;font-weight:700;color:#e60000;}
+    .ct-qty{display:flex;align-items:center;border:1px solid #ddd;border-radius:4px;overflow:hidden;width:fit-content;}
+    .ct-qty button{width:32px;height:32px;background:#f5f5f5;border:none;font-size:16px;cursor:pointer;}
+    .ct-qty button:hover{background:#e60000;color:#fff;}
+    .ct-qty input{width:44px;height:32px;text-align:center;border:none;border-left:1px solid #ddd;border-right:1px solid #ddd;font-size:14px;}
+    .ct-subtotal{font-size:15px;font-weight:700;color:#1a1a1a;}
+    .ct-remove{background:none;border:1px solid #ddd;width:30px;height:30px;border-radius:4px;cursor:pointer;font-size:16px;color:#999;display:flex;align-items:center;justify-content:center;}
+    .ct-remove:hover{background:#e60000;color:#fff;border-color:#e60000;}
+    .cart-summary-card{background:#f9f9f9;border:1px solid #e0e0e0;border-radius:8px;padding:24px;position:sticky;top:90px;}
+    .summary-title{font-size:16px;font-weight:700;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #e0e0e0;}
+    .summary-row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:12px;color:#555;}
+    .summary-row.total{font-size:17px;font-weight:700;color:#1a1a1a;padding-top:12px;border-top:2px solid #e0e0e0;margin-top:4px;}
+    .summary-shipping{font-size:12px;color:#28a745;margin-bottom:16px;}
+    .btn-checkout-full{width:100%;padding:15px;background:#28a745;color:#fff;border:none;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;text-transform:uppercase;border-radius:4px;cursor:pointer;margin-bottom:12px;}
+    .btn-checkout-full:hover{background:#218838;}
+    .btn-continue{width:100%;padding:13px;background:#fff;color:#1a1a1a;border:2px solid #1a1a1a;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;border-radius:4px;cursor:pointer;}
+    .btn-continue:hover{background:#1a1a1a;color:#fff;}
+    .empty-cart-page{text-align:center;padding:80px 20px;}
+    .coupon-row{display:flex;gap:8px;margin-top:16px;}
+    .coupon-row input{flex:1;padding:10px 12px;border:1px solid #ddd;border-radius:4px;font-size:13px;}
+    .coupon-row button{padding:10px 16px;background:#1a1a1a;color:#fff;border:none;border-radius:4px;font-size:13px;font-weight:700;cursor:pointer;}
+    .coupon-row button:hover{background:#e60000;}
+    .payment-methods-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid #e0e0e0;}
+    @media(max-width:900px){.cart-page-layout{grid-template-columns:1fr;}}
+    @media(max-width:768px){
+      .cart-table thead{display:none;}
+      .cart-table,.cart-table tbody,.cart-table tr,.cart-table td{display:block;width:100%;}
+      .cart-table tr{padding:16px;border:1px solid #e0e0e0;border-radius:8px;margin-bottom:12px;position:relative;background:#fff;}
+      .cart-table td{padding:6px 0;border:none;}
+      .ct-price::before{content:'Price: ';font-weight:400;color:#999;font-size:12px;}
+      .ct-subtotal::before{content:'Subtotal: ';font-weight:400;color:#999;font-size:12px;}
+      .ct-remove{position:absolute;top:12px;right:12px;}
+      .cart-summary-card{position:static;}
+    }
+  </style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<div class="page-header-section" style="background:#1a1a1a;color:#fff;padding:28px 0">
+  <div class="container"><h1 style="font-size:24px;font-weight:700">Shopping Cart</h1></div>
+</div>
+
+<div class="section" style="padding:36px 0 60px">
+  <div class="container" id="cartPageContainer">
+    <div class="empty-cart-page" id="emptyMsg" style="display:none">
+      <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1.2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <h2 style="margin:20px 0 10px;font-size:22px">Your cart is empty</h2>
+      <p style="color:#999;margin-bottom:28px">Looks like you haven't added any tires yet.</p>
+      <a href="tires.html" class="btn-outline">Shop Tires</a>
+    </div>
+    <div class="cart-page-layout" id="cartPageContent">
+      <div>
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th style="width:50%">Product</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th>Subtotal</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cartTableBody"></tbody>
+        </table>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;flex-wrap:wrap;gap:12px">
+          <a href="tires.html" style="font-size:13px;color:#e60000;font-weight:600">&larr; Continue Shopping</a>
+          <button onclick="clearAllCart()" style="font-size:13px;color:#999;background:none;border:1px solid #ddd;padding:8px 16px;border-radius:4px;cursor:pointer">Clear Cart</button>
+        </div>
+      </div>
+      <div class="cart-summary-card">
+        <div class="summary-title">Order Summary</div>
+        <div class="summary-row"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
+        <div class="summary-row"><span>Shipping</span><span id="summaryShipping">Calculated at checkout</span></div>
+        <div class="summary-row total"><span>Total</span><span id="summaryTotal">$0.00</span></div>
+        <p class="summary-shipping">&#10003; Free shipping on orders over $500</p>
+        <button class="btn-checkout-full" onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
+        <button class="btn-continue" onclick="window.location.href='tires.html'">Continue Shopping</button>
+        <div class="coupon-row">
+          <input type="text" placeholder="Coupon code" id="couponInput"/>
+          <button onclick="applyCoupon()">Apply</button>
+        </div>
+        <div class="payment-methods-row">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">AMEX</span>
+          <span class="payment-icon">PayPal</span>
+          <span class="payment-icon">Discover</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="components.js"></script>
+<script src="products.generated.js"></script><script src="products.js"></script>
+<script src="script.js"></script>
+<script>
+function initPage() { renderCartPage(); }
+
+function renderCartPage() {
+  const subtotal = cart.reduce((s,i) => s+i.price*i.qty, 0);
+  const shipping = subtotal >= 500 ? 0 : 49.99;
+  const total = subtotal + shipping;
+
+  if (!cart.length) {
+    document.getElementById('emptyMsg').style.display = 'block';
+    document.getElementById('cartPageContent').style.display = 'none';
+    return;
+  }
+  document.getElementById('emptyMsg').style.display = 'none';
+  document.getElementById('cartPageContent').style.display = 'grid';
+
+  document.getElementById('cartTableBody').innerHTML = cart.map((item, idx) => {
+    const product = catalogProductForCart(item);
+    const image = item.image || product?.image;
+    return `
+    <tr>
+      <td><div class="ct-product">
+        <div class="ct-img">${image ? `<img src="${image}" alt="${item.brand} ${item.name}" loading="lazy" />` : '<svg width="50" height="50" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="#1a1a1a"/><circle cx="32" cy="32" r="16" fill="none" stroke="#555" stroke-width="6"/><circle cx="32" cy="32" r="5" fill="#e60000"/></svg>'}</div>
+        <div><div class="ct-brand">${item.brand}</div><div class="ct-name">${item.name}</div></div>
+      </div></td>
+      <td class="ct-price">$${item.price.toFixed(2)}</td>
+      <td><div class="ct-qty">
+        <button onclick="updateQty(${idx},-1)">−</button>
+        <input type="number" value="${item.qty}" min="1" onchange="setQty(${idx},this.value)"/>
+        <button onclick="updateQty(${idx},1)">+</button>
+      </div></td>
+      <td class="ct-subtotal">$${(item.price*item.qty).toFixed(2)}</td>
+      <td><button class="ct-remove" onclick="removeItem(${idx})">×</button></td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('summarySubtotal').textContent = '$' + subtotal.toFixed(2);
+  document.getElementById('summaryShipping').textContent = shipping === 0 ? 'FREE' : '$' + shipping.toFixed(2);
+  document.getElementById('summaryTotal').textContent = '$' + total.toFixed(2);
+}
+
+function updateQty(idx, d) {
+  cart[idx].qty = Math.max(1, cart[idx].qty + d);
+  saveCart(); renderCartPage();
+}
+function setQty(idx, v) {
+  cart[idx].qty = Math.max(1, parseInt(v)||1);
+  saveCart(); renderCartPage();
+}
+function removeItem(idx) { cart.splice(idx,1); saveCart(); renderCartPage(); }
+function clearAllCart() { cart=[]; saveCart(); renderCartPage(); }
+function applyCoupon() {
+  const c = document.getElementById('couponInput').value.trim().toUpperCase();
+  if (c === 'SAVE10') showToast('Coupon applied: 10% off!', 'success');
+  else showToast('Invalid coupon code.');
+}
+</script>
+</body>
+</html>

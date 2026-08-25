@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Account - Double Coin Heavy Duty Truck Warehouse</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    .account-page{min-height:60vh;padding:56px 0;background:#f7f7f7}.account-card{max-width:620px;margin:0 auto;padding:32px;background:#fff;border:1px solid #e4e4e4;border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,.06)}.account-card h1{margin:0 0 8px;font-size:27px}.account-card p{color:#666;font-size:14px}.account-details{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}.account-detail{padding:14px;border:1px solid #eee;border-radius:6px;background:#fafafa}.account-detail small{display:block;margin-bottom:5px;color:#999;font-size:11px;text-transform:uppercase;font-weight:700;letter-spacing:.4px}.account-actions{display:flex;gap:10px}.account-actions a,.account-actions button{flex:1;text-align:center;padding:12px;border-radius:4px;font:600 13px var(--font);cursor:pointer}.account-actions a{background:#1a1a1a;color:#fff}.account-actions button{border:1px solid #ddd;background:#fff;color:#333}@media(max-width:600px){.account-page{padding:28px 0}.account-card{padding:22px 16px}.account-details{grid-template-columns:1fr}.account-actions{flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main class="account-page"><div class="container"><section class="account-card" id="accountCard"></section></div></main>
+  <div id="site-footer"></div>
+  <script src="components.js"></script><script src="products.generated.js"></script><script src="products.js"></script><script src="script.js"></script>
+  <script>
+    function initPage(){
+      const user=getCurrentUser();
+      const card=document.getElementById('accountCard');
+      if(!user){card.innerHTML='<h1>Sign in to your account</h1><p>Access saved details, orders, and member benefits.</p><div class="account-actions"><a href="login.html">Sign In</a><a href="membership.html">Create Account</a></div>';return;}
+      card.innerHTML=`<h1>Welcome, ${user.name||'there'}!</h1><p>Your account is ready for faster checkout and member benefits.</p><div class="account-details"><div class="account-detail"><small>Email</small>${user.email}</div><div class="account-detail"><small>Plan</small>${user.plan||'Guest'}</div><div class="account-detail"><small>Company</small>${user.company||'Not provided'}</div><div class="account-detail"><small>Delivery</small>Available to every ZIP code</div></div><div class="account-actions"><a href="tires.html">Shop Tires</a><button type="button" onclick="signOut();initPage()">Sign Out</button></div>`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog - Double Coin Heavy Duty Truck Warehouse</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    .blog-layout{display:grid;grid-template-columns:1fr 300px;gap:36px;align-items:flex-start;}
+    .blog-main-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    .blog-card-large{border:1px solid #e0e0e0;border-radius:8px;overflow:hidden;background:#fff;transition:all .2s;}
+    .blog-card-large:hover{box-shadow:0 4px 16px rgba(0,0,0,.1);transform:translateY(-2px);}
+    .blog-card-large.featured{grid-column:1/-1;}
+    .blog-img-lg{background:#222;overflow:hidden;}
+    .blog-cat-tag{display:inline-block;background:#e60000;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+    .sidebar-card{border:1px solid #e0e0e0;border-radius:8px;padding:20px;background:#fff;margin-bottom:20px;}
+    .sidebar-card h3{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid #e60000;}
+    .recent-post{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #f0f0f0;}
+    .recent-post:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+    .rp-img{width:56px;height:56px;background:#222;border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+    .rp-title{font-size:13px;font-weight:600;color:#1a1a1a;line-height:1.4;margin-bottom:4px;}
+    .rp-date{font-size:11px;color:#999;}
+    .tag-cloud{display:flex;flex-wrap:wrap;gap:8px;}
+    .tag{background:#f5f5f5;border:1px solid #e0e0e0;color:#555;font-size:12px;padding:5px 12px;border-radius:4px;cursor:pointer;transition:all .2s;}
+    .tag:hover{background:#e60000;color:#fff;border-color:#e60000;}
+    @media(max-width:900px){.blog-layout{grid-template-columns:1fr;}.blog-main-grid{grid-template-columns:1fr;}}
+    @media(max-width:768px){
+      .sidebar-card{padding:16px;}
+    }
+  </style>
+</head>
+<body>
+<div id="site-header"></div>
+<div class="page-header-section" style="background:#1a1a1a;color:#fff;padding:36px 0">
+  <div class="container">
+    <h1 style="font-size:28px;font-weight:700">Blog &amp; Tire Guides</h1>
+    <p style="color:#aaa;margin-top:6px;font-size:14px">Expert advice, buying guides, and industry news for truck drivers and fleet managers</p>
+  </div>
+</div>
+<div class="section" style="padding:40px 0 60px">
+  <div class="container">
+    <div class="blog-layout">
+      <div>
+        <div class="blog-main-grid">
+
+          <article class="blog-card-large featured">
+            <div class="blog-img-lg" style="height:280px;display:flex;align-items:center;justify-content:center">
+              <svg width="100%" height="280" viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="280" fill="#1a1a1a"/><circle cx="400" cy="140" r="100" fill="none" stroke="#e60000" stroke-width="8"/><circle cx="400" cy="140" r="60" fill="none" stroke="#444" stroke-width="20"/><circle cx="400" cy="140" r="16" fill="#666"/><text x="400" y="256" font-family="Poppins,Arial,sans-serif" font-size="14" fill="#555" text-anchor="middle">Winter Tires Guide</text></svg>
+            </div>
+            <div class="blog-content">
+              <span class="blog-cat-tag">Buying Guide</span>
+              <h2 class="blog-title" style="font-size:22px">The Ultimate Guide to Best Winter Tires for Trucks</h2>
+              <p class="blog-excerpt" style="font-size:14px">Discover the top winter tire options for commercial trucks to keep your fleet safe and productive through the cold months. We cover all-season vs. winter-dedicated tires, tread patterns, load ratings, and the top brands to consider for your specific application.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
+                <span class="blog-date">09.14.2025 &bull; 8 min read</span>
+                <a href="blog-post.html?id=1" class="blog-link">Read More &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-card-large">
+            <div class="blog-img-lg" style="height:180px;display:flex;align-items:center;justify-content:center">
+              <svg width="100%" height="180" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="180" fill="#1e2a3a"/><circle cx="200" cy="90" r="60" fill="none" stroke="#e60000" stroke-width="6"/><circle cx="200" cy="90" r="35" fill="none" stroke="#444" stroke-width="14"/><circle cx="200" cy="90" r="10" fill="#666"/><text x="200" y="160" font-family="Poppins,Arial,sans-serif" font-size="12" fill="#555" text-anchor="middle">RV Tires</text></svg>
+            </div>
+            <div class="blog-content">
+              <span class="blog-cat-tag">RV &amp; Motorhome</span>
+              <h3 class="blog-title">Best RV Tires for Travel Trailers: Your Ultimate Guide</h3>
+              <p class="blog-excerpt">Find the perfect tires for your travel trailer or motorhome with our comprehensive buyer's guide and expert recommendations.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px">
+                <span class="blog-date">09.21.2025 &bull; 6 min read</span>
+                <a href="blog-post.html?id=2" class="blog-link">Read More &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-card-large">
+            <div class="blog-img-lg" style="height:180px;display:flex;align-items:center;justify-content:center">
+              <svg width="100%" height="180" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="180" fill="#1a2a1a"/><circle cx="200" cy="90" r="60" fill="none" stroke="#28a745" stroke-width="6"/><circle cx="200" cy="90" r="35" fill="none" stroke="#444" stroke-width="14"/><circle cx="200" cy="90" r="10" fill="#666"/><text x="200" y="160" font-family="Poppins,Arial,sans-serif" font-size="12" fill="#555" text-anchor="middle">Truck Tires</text></svg>
+            </div>
+            <div class="blog-content">
+              <span class="blog-cat-tag">Truck Tires</span>
+              <h3 class="blog-title">Best Tires for My Truck: Top Picks for Every Driving Condition</h3>
+              <p class="blog-excerpt">Whether you haul on highways or navigate off-road terrain, we break down the best truck tires for every driving need.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px">
+                <span class="blog-date">09.14.2025 &bull; 7 min read</span>
+                <a href="blog-post.html?id=3" class="blog-link">Read More &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-card-large">
+            <div class="blog-img-lg" style="height:180px;display:flex;align-items:center;justify-content:center">
+              <svg width="100%" height="180" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="180" fill="#2a1a1a"/><circle cx="200" cy="90" r="60" fill="none" stroke="#ffc107" stroke-width="6"/><circle cx="200" cy="90" r="35" fill="none" stroke="#444" stroke-width="14"/><circle cx="200" cy="90" r="10" fill="#666"/><text x="200" y="160" font-family="Poppins,Arial,sans-serif" font-size="12" fill="#555" text-anchor="middle">Tire Maintenance</text></svg>
+            </div>
+            <div class="blog-content">
+              <span class="blog-cat-tag">Maintenance</span>
+              <h3 class="blog-title">How to Extend Commercial Truck Tire Life: 10 Expert Tips</h3>
+              <p class="blog-excerpt">Proper tire maintenance can double the life of your commercial tires. Learn inflation, rotation, alignment and retreading best practices.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px">
+                <span class="blog-date">08.30.2025 &bull; 5 min read</span>
+                <a href="blog-post.html?id=4" class="blog-link">Read More &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-card-large">
+            <div class="blog-img-lg" style="height:180px;display:flex;align-items:center;justify-content:center">
+              <svg width="100%" height="180" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="180" fill="#1a1a2a"/><circle cx="200" cy="90" r="60" fill="none" stroke="#6c63ff" stroke-width="6"/><circle cx="200" cy="90" r="35" fill="none" stroke="#444" stroke-width="14"/><circle cx="200" cy="90" r="10" fill="#666"/><text x="200" y="160" font-family="Poppins,Arial,sans-serif" font-size="12" fill="#555" text-anchor="middle">Drive Tires</text></svg>
+            </div>
+            <div class="blog-content">
+              <span class="blog-cat-tag">Drive Tires</span>
+              <h3 class="blog-title">Drive vs. Steer vs. Trailer Tires: What's the Difference?</h3>
+              <p class="blog-excerpt">Not all commercial truck tires are created equal. Understanding tire positions is critical to safety and performance.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px">
+                <span class="blog-date">08.15.2025 &bull; 4 min read</span>
+                <a href="blog-post.html?id=5" class="blog-link">Read More &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="blog-card-large">
+            <div class="blog-img-lg" style="height:180px;display:flex;align-items:center;justify-content:center">
+              <svg width="100%" height="180" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="180" fill="#1a2a2a"/><circle cx="200" cy="90" r="60" fill="none" stroke="#17a2b8" stroke-width="6"/><circle cx="200" cy="90" r="35" fill="none" stroke="#444" stroke-width="14"/><circle cx="200" cy="90" r="10" fill="#666"/><text x="200" y="160" font-family="Poppins,Arial,sans-serif" font-size="12" fill="#555" text-anchor="middle">Fuel Economy</text></svg>
+            </div>
+            <div class="blog-content">
+              <span class="blog-cat-tag">Fuel Economy</span>
+              <h3 class="blog-title">How SmartWay Certified Tires Can Save Your Fleet Thousands</h3>
+              <p class="blog-excerpt">Low rolling resistance tires reduce fuel costs significantly. We explain SmartWay certification and which tires qualify.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px">
+                <span class="blog-date">07.28.2025 &bull; 6 min read</span>
+                <a href="blog-post.html?id=6" class="blog-link">Read More &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside>
+        <div class="sidebar-card">
+          <h3>Search</h3>
+          <div class="header-search" style="max-width:100%">
+            <input type="text" placeholder="Search articles..." class="search-input"/>
+            <button class="search-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Categories</h3>
+          <ul style="list-style:none;font-size:13px">
+            <li style="padding:8px 0;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between"><a href="#" style="color:#e60000">Buying Guides</a> <span style="color:#999">3</span></li>
+            <li style="padding:8px 0;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between"><a href="#" style="color:#e60000">Tire Maintenance</a> <span style="color:#999">2</span></li>
+            <li style="padding:8px 0;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between"><a href="#" style="color:#e60000">RV &amp; Motorhome</a> <span style="color:#999">1</span></li>
+            <li style="padding:8px 0;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between"><a href="#" style="color:#e60000">Drive Tires</a> <span style="color:#999">1</span></li>
+            <li style="padding:8px 0;display:flex;justify-content:space-between"><a href="#" style="color:#e60000">Fuel Economy</a> <span style="color:#999">1</span></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Recent Posts</h3>
+          <div class="recent-post">
+            <div class="rp-img"><svg width="36" height="36" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="#1a1a1a"/><circle cx="32" cy="32" r="16" fill="none" stroke="#e60000" stroke-width="6"/><circle cx="32" cy="32" r="5" fill="#555"/></svg></div>
+            <div><div class="rp-title">Ultimate Guide to Winter Tires</div><div class="rp-date">09.14.2025</div></div>
+          </div>
+          <div class="recent-post">
+            <div class="rp-img"><svg width="36" height="36" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="#1a1a1a"/><circle cx="32" cy="32" r="16" fill="none" stroke="#e60000" stroke-width="6"/><circle cx="32" cy="32" r="5" fill="#555"/></svg></div>
+            <div><div class="rp-title">Best RV Tires for Travel Trailers</div><div class="rp-date">09.21.2025</div></div>
+          </div>
+          <div class="recent-post">
+            <div class="rp-img"><svg width="36" height="36" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="#1a1a1a"/><circle cx="32" cy="32" r="16" fill="none" stroke="#e60000" stroke-width="6"/><circle cx="32" cy="32" r="5" fill="#555"/></svg></div>
+            <div><div class="rp-title">Best Tires for Every Condition</div><div class="rp-date">09.14.2025</div></div>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Tags</h3>
+          <div class="tag-cloud">
+            <span class="tag">Commercial Tires</span><span class="tag">Drive Tires</span><span class="tag">Steer Tires</span><span class="tag">Winter Tires</span><span class="tag">RV Tires</span><span class="tag">Fuel Economy</span><span class="tag">Fleet</span><span class="tag">Maintenance</span><span class="tag">SmartWay</span>
+          </div>
+        </div>
+
+        <div style="background:#e60000;color:#fff;border-radius:8px;padding:24px;text-align:center">
+          <h3 style="font-size:16px;margin-bottom:10px">Shop Tires Now</h3>
+          <p style="font-size:13px;opacity:.88;margin-bottom:16px">Find the right tire at the best price.</p>
+          <a href="tires.html" style="background:#fff;color:#e60000;padding:10px 20px;border-radius:4px;font-size:13px;font-weight:700;display:inline-block">Browse Tires</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="components.js"></script>
+<script src="products.generated.js"></script><script src="products.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

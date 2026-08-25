@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Membership - Double Coin Heavy Duty Truck Warehouse</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    .member-hero{background:linear-gradient(135deg,#e60000,#990000);color:#fff;padding:60px 0;text-align:center;}
+    .member-hero h1{font-size:40px;font-weight:700;margin-bottom:12px;}
+    .member-hero p{font-size:16px;opacity:.88;max-width:560px;margin:0 auto;}
+    .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:48px;}
+    .plan-card{border:2px solid #e0e0e0;border-radius:10px;padding:32px 24px;text-align:center;background:#fff;position:relative;transition:all .2s;}
+    .plan-card.featured{border-color:#e60000;box-shadow:0 8px 24px rgba(230,0,0,.15);}
+    .plan-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#e60000;color:#fff;font-size:11px;font-weight:700;padding:4px 14px;border-radius:14px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
+    .plan-name{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#999;margin-bottom:10px;}
+    .plan-price{font-size:42px;font-weight:700;color:#1a1a1a;margin-bottom:4px;}
+    .plan-price sup{font-size:20px;vertical-align:top;margin-top:10px;}
+    .plan-period{font-size:13px;color:#999;margin-bottom:24px;}
+    .plan-features{text-align:left;margin-bottom:28px;}
+    .plan-feature{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;font-size:13px;color:#444;}
+    .plan-feature svg{flex-shrink:0;margin-top:1px;}
+    .btn-plan{width:100%;padding:13px;border:none;border-radius:4px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.5px;transition:all .2s;}
+    .btn-plan.primary{background:#e60000;color:#fff;}
+    .btn-plan.primary:hover{background:#cc0000;}
+    .btn-plan.secondary{background:#f5f5f5;color:#1a1a1a;border:2px solid #ddd;}
+    .btn-plan.secondary:hover{border-color:#1a1a1a;background:#1a1a1a;color:#fff;}
+    .benefits-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:48px;}
+    .benefit-card{border:1px solid #e0e0e0;border-radius:8px;padding:24px 18px;text-align:center;background:#fff;}
+    .benefit-icon{font-size:32px;margin-bottom:12px;}
+    .benefit-card h3{font-size:15px;font-weight:700;margin-bottom:8px;}
+    .benefit-card p{font-size:13px;color:#666;line-height:1.6;}
+    .member-faq{max-width:740px;margin:0 auto;}
+    .faq-item{border-bottom:1px solid #e0e0e0;padding:18px 0;}
+    .faq-q{font-size:15px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:#1a1a1a;}
+    .faq-a{font-size:14px;color:#555;line-height:1.7;margin-top:12px;display:none;}
+    .faq-a.open{display:block;}
+    .signup-form{max-width:500px;margin:0 auto;background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:36px;}
+    @media(max-width:900px){.plans-grid{grid-template-columns:1fr;}.benefits-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:768px){
+      .member-hero h1{font-size:26px;}
+      .member-hero{padding:40px 0;}
+      .plan-price{font-size:34px;}
+      .signup-form{padding:24px;}
+    }
+    @media(max-width:480px){
+      .member-hero h1{font-size:22px;}
+      .benefits-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<div class="member-hero">
+  <div class="container">
+    <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:.7;margin-bottom:10px">Exclusive Savings Program</div>
+    <h1>Become a Member &amp; Save More</h1>
+    <p>Get access to exclusive member discounts, priority shipping, and early deal access on major brand commercial truck tires.</p>
+    <div style="margin-top:28px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>No contracts</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Cancel anytime</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:13px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Instant savings</div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="padding:52px 0 60px">
+  <div class="container">
+
+    <!-- Benefits -->
+    <h2 class="section-title">Member Benefits</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card"><div class="benefit-icon">💰</div><h3>10% Off Every Order</h3><p>Members automatically receive 10% off all tire purchases, every time.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">🚚</div><h3>Free Priority Shipping</h3><p>Skip standard shipping on qualifying orders. Members get priority handling.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">⚡</div><h3>Early Deal Access</h3><p>Get notified about flash sales and new deals 24 hours before the public.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">🛡️</div><h3>Extended Returns</h3><p>Members enjoy 60-day returns vs. the standard 45-day policy.</p></div>
+    </div>
+
+    <!-- Plans -->
+    <h2 class="section-title">Choose Your Plan</h2>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-name">Basic</div>
+        <div class="plan-price"><sup>$</sup>9</div>
+        <div class="plan-period">per month</div>
+        <div class="plan-features">
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 5% off all tire purchases</div>
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Free shipping on orders $300+</div>
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 50-day returns</div>
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> <span style="color:#999">Early deal access</span></div>
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> <span style="color:#999">Dedicated account manager</span></div>
+        </div>
+        <button class="btn-plan secondary" onclick="signUp('Basic')">Get Started</button>
+      </div>
+
+      <div class="plan-card featured">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price"><sup>$</sup>19</div>
+        <div class="plan-period">per month</div>
+        <div class="plan-features">
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> <strong>10% off all tire purchases</strong></div>
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Free shipping on all orders</div>
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 60-day extended returns</div>
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Early deal access (24hrs)</div>
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> <span style="color:#999">Dedicated account manager</span></div>
+        </div>
+        <button class="btn-plan primary" onclick="signUp('Pro')">Join Pro</button>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-name">Fleet</div>
+        <div class="plan-price"><sup>$</sup>49</div>
+        <div class="plan-period">per month</div>
+        <div class="plan-features">
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> <strong>15% off all tire purchases</strong></div>
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Free expedited shipping</div>
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 90-day returns</div>
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Early deal access (48hrs)</div>
+          <div class="plan-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Dedicated account manager</div>
+        </div>
+        <button class="btn-plan secondary" onclick="signUp('Fleet')">Contact Sales</button>
+      </div>
+    </div>
+
+    <!-- Sign Up Form -->
+    <h2 class="section-title">Sign Up Today</h2>
+    <div class="signup-form">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="form-group" style="display:flex;flex-direction:column;gap:6px"><label style="font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.4px">Full Name</label><input id="signupName" type="text" placeholder="John Doe" required style="padding:11px 13px;border:1px solid #ddd;border-radius:4px;font-size:14px;font-family:'Poppins',sans-serif;outline:none"/></div>
+        <div class="form-group" style="display:flex;flex-direction:column;gap:6px"><label style="font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.4px">Email Address</label><input id="signupEmail" type="email" placeholder="you@company.com" required style="padding:11px 13px;border:1px solid #ddd;border-radius:4px;font-size:14px;font-family:'Poppins',sans-serif;outline:none"/></div>
+        <div class="form-group" style="display:flex;flex-direction:column;gap:6px"><label style="font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.4px">Company (optional)</label><input id="signupCompany" type="text" placeholder="Your company name" style="padding:11px 13px;border:1px solid #ddd;border-radius:4px;font-size:14px;font-family:'Poppins',sans-serif;outline:none"/></div>
+        <div class="form-group" style="display:flex;flex-direction:column;gap:6px"><label style="font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.4px">Password</label><input id="signupPassword" type="password" minlength="6" autocomplete="new-password" required style="padding:11px 13px;border:1px solid #ddd;border-radius:4px;font-size:14px;font-family:'Poppins',sans-serif;outline:none"/></div>
+        <div class="form-group" style="display:flex;flex-direction:column;gap:6px"><label style="font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.4px">Confirm Password</label><input id="signupPasswordConfirm" type="password" minlength="6" autocomplete="new-password" required style="padding:11px 13px;border:1px solid #ddd;border-radius:4px;font-size:14px;font-family:'Poppins',sans-serif;outline:none"/></div>
+        <div class="form-group" style="display:flex;flex-direction:column;gap:6px"><label style="font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.4px">Select Plan</label>
+          <select id="planSelect" style="padding:11px 13px;border:1px solid #ddd;border-radius:4px;font-size:14px;font-family:'Poppins',sans-serif;outline:none">
+            <option>Basic — $9/mo</option><option selected>Pro — $19/mo</option><option>Fleet — $49/mo</option>
+          </select>
+        </div>
+        <button type="button" onclick="registerUser(event)" style="padding:14px;background:#e60000;color:#fff;border:none;border-radius:4px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;cursor:pointer;text-transform:uppercase;letter-spacing:.5px">Create Account</button>
+        <p style="font-size:12px;color:#999;text-align:center">Cancel anytime. No contracts required.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="components.js"></script>
+<script src="products.generated.js"></script><script src="products.js"></script>
+<script src="script.js"></script>
+<script>
+function signUp(plan) {
+  document.getElementById('planSelect').value = plan === 'Basic' ? 'Basic — $9/mo' : plan === 'Fleet' ? 'Fleet — $49/mo' : 'Pro — $19/mo';
+  document.querySelector('.signup-form').scrollIntoView({behavior:'smooth'});
+}
+function joinMember() { registerUser(event); }
+</script>
+</body>
+</html>

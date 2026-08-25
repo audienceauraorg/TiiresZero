@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Track Your Order - Double Coin Heavy Duty Truck Warehouse</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    .track-box{max-width:600px;margin:0 auto;background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:40px;}
+    .track-box h2{font-size:22px;font-weight:700;margin-bottom:8px;}
+    .track-box p{color:#666;font-size:14px;margin-bottom:28px;}
+    .track-input-row{display:flex;gap:10px;margin-bottom:10px;}
+    .track-input-row input{flex:1;padding:12px 14px;border:2px solid #ddd;border-radius:4px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;transition:border-color .2s;}
+    .track-input-row input:focus{border-color:#e60000;}
+    .btn-track{background:#e60000;color:#fff;border:none;padding:12px 24px;border-radius:4px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;}
+    .btn-track:hover{background:#cc0000;}
+    .track-result{margin-top:28px;display:none;}
+    .order-header{background:#f9f9f9;border:1px solid #e0e0e0;border-radius:8px;padding:20px;margin-bottom:20px;}
+    .order-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .order-meta-item label{font-size:11px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px;}
+    .order-meta-item span{font-size:14px;font-weight:600;color:#1a1a1a;}
+    .timeline{margin:24px 0;}
+    .timeline-step{display:flex;gap:16px;align-items:flex-start;margin-bottom:0;}
+    .tl-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;}
+    .tl-icon.done{background:#28a745;}
+    .tl-icon.active{background:#e60000;}
+    .tl-icon.pending{background:#e0e0e0;}
+    .tl-line{width:2px;height:36px;background:#e0e0e0;margin-left:17px;}
+    .tl-line.done{background:#28a745;}
+    .tl-body{padding-bottom:28px;}
+    .tl-title{font-size:14px;font-weight:700;color:#1a1a1a;}
+    .tl-sub{font-size:12px;color:#999;margin-top:2px;}
+    .order-items-title{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;color:#999;}
+    .order-item-row{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid #f0f0f0;}
+    .order-item-row:last-child{border:none;}
+    @media(max-width:768px){
+      .track-box{padding:24px 18px;}
+      .order-meta{grid-template-columns:1fr;gap:12px;}
+      .track-input-row{flex-direction:column;}
+      .btn-track{width:100%;}
+    }
+  </style>
+</head>
+<body>
+<div id="site-header"></div>
+<div class="page-header-section" style="background:#1a1a1a;color:#fff;padding:36px 0">
+  <div class="container">
+    <h1 style="font-size:28px;font-weight:700">Track Your Order</h1>
+    <p style="color:#aaa;margin-top:6px;font-size:14px">Enter your order number to see real-time status updates</p>
+  </div>
+</div>
+<div class="section" style="padding:48px 0 60px">
+  <div class="container">
+    <div class="track-box">
+      <h2>Order Tracking</h2>
+      <p>Enter your order number and the email address used at checkout to track your shipment.</p>
+      <div class="track-input-row">
+        <input type="text" id="orderNum" placeholder="Order number (e.g. TET-12345)"/>
+      </div>
+      <div class="track-input-row">
+        <input type="email" id="orderEmail" placeholder="Email address"/>
+        <button class="btn-track" onclick="trackOrder()">Track</button>
+      </div>
+      <p style="font-size:12px;color:#999">Don't have your order number? Check your confirmation email or <a href="login.html" style="color:#e60000">log in to your account</a>.</p>
+
+      <!-- Demo result -->
+      <div class="track-result" id="trackResult">
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:16px">Order <span id="displayOrderNum"></span></h3>
+        <div class="order-header">
+          <div class="order-meta">
+            <div class="order-meta-item"><label>Order Date</label><span>Aug 20, 2026</span></div>
+            <div class="order-meta-item"><label>Status</label><span style="color:#e60000">In Transit</span></div>
+            <div class="order-meta-item"><label>Est. Delivery</label><span>Aug 26, 2026</span></div>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-step">
+            <div><div class="tl-icon done"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div class="tl-line done"></div></div>
+            <div class="tl-body"><div class="tl-title">Order Placed</div><div class="tl-sub">Aug 20, 2026 at 10:32 AM</div></div>
+          </div>
+          <div class="timeline-step">
+            <div><div class="tl-icon done"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div class="tl-line done"></div></div>
+            <div class="tl-body"><div class="tl-title">Order Processed</div><div class="tl-sub">Aug 20, 2026 at 3:15 PM</div></div>
+          </div>
+          <div class="timeline-step">
+            <div><div class="tl-icon done"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div class="tl-line done"></div></div>
+            <div class="tl-body"><div class="tl-title">Shipped</div><div class="tl-sub">Aug 21, 2026 — FedEx Freight · Tracking: 794644823421</div></div>
+          </div>
+          <div class="timeline-step">
+            <div><div class="tl-icon active"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div class="tl-line"></div></div>
+            <div class="tl-body"><div class="tl-title" style="color:#e60000">In Transit</div><div class="tl-sub">Last scan: Memphis, TN — Aug 23, 2026</div></div>
+          </div>
+          <div class="timeline-step">
+            <div><div class="tl-icon pending"></div></div>
+            <div class="tl-body"><div class="tl-title" style="color:#999">Delivered</div><div class="tl-sub">Estimated Aug 26, 2026</div></div>
+          </div>
+        </div>
+
+        <div class="order-items-title">Items in this order</div>
+        <div class="order-item-row">
+          <div style="width:50px;height:50px;background:#f5f5f5;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="36" height="36" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="#1a1a1a"/><circle cx="32" cy="32" r="16" fill="none" stroke="#555" stroke-width="6"/><circle cx="32" cy="32" r="5" fill="#e60000"/></svg>
+          </div>
+          <div style="flex:1"><div style="font-size:14px;font-weight:600">Goodyear G647 RSS 11R22.5</div><div style="font-size:12px;color:#999">Qty: 4</div></div>
+          <div style="font-size:14px;font-weight:700;color:#e60000">$1,279.96</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="site-footer"></div>
+<script src="components.js"></script>
+<script src="products.generated.js"></script><script src="products.js"></script>
+<script src="script.js"></script>
+<script>
+function trackOrder() {
+  const num = document.getElementById('orderNum').value.trim();
+  const email = document.getElementById('orderEmail').value.trim();
+  if (!num || !email) { showToast('Please enter your order number and email.'); return; }
+  document.getElementById('displayOrderNum').textContent = num;
+  document.getElementById('trackResult').style.display = 'block';
+  document.getElementById('trackResult').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>

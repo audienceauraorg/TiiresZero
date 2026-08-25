@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQ - Double Coin Heavy Duty Truck Warehouse</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    .faq-layout{display:grid;grid-template-columns:240px 1fr;gap:36px;align-items:flex-start;}
+    .faq-nav{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:20px;position:sticky;top:90px;}
+    .faq-nav h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#999;margin-bottom:14px;}
+    .faq-nav a{display:block;padding:8px 12px;font-size:13px;color:#555;border-radius:4px;margin-bottom:4px;transition:all .2s;}
+    .faq-nav a:hover,.faq-nav a.active{background:#e60000;color:#fff;}
+    .faq-section{margin-bottom:48px;}
+    .faq-section-title{font-size:20px;font-weight:700;color:#1a1a1a;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid #e60000;display:flex;align-items:center;gap:10px;}
+    .faq-item{border:1px solid #e0e0e0;border-radius:6px;margin-bottom:10px;overflow:hidden;}
+    .faq-q{padding:16px 20px;font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:#1a1a1a;user-select:none;transition:background .2s;}
+    .faq-q:hover{background:#f9f9f9;}
+    .faq-q.open{background:#f9f9f9;color:#e60000;}
+    .faq-toggle{font-size:20px;font-weight:300;color:#999;transition:transform .2s;}
+    .faq-q.open .faq-toggle{transform:rotate(45deg);color:#e60000;}
+    .faq-a{display:none;padding:0 20px 16px;font-size:14px;color:#555;line-height:1.8;}
+    .faq-a.open{display:block;}
+    @media(max-width:900px){.faq-layout{grid-template-columns:1fr;}.faq-nav{position:static;}}
+  </style>
+</head>
+<body>
+<div id="site-header"></div>
+<div class="page-header-section" style="background:#1a1a1a;color:#fff;padding:36px 0">
+  <div class="container">
+    <h1 style="font-size:28px;font-weight:700">Frequently Asked Questions</h1>
+    <p style="color:#aaa;margin-top:6px;font-size:14px">Find answers to the most common questions about our tires, orders, and policies</p>
+  </div>
+</div>
+<div class="section" style="padding:40px 0 60px">
+  <div class="container">
+    <div class="faq-layout">
+
+      <!-- Nav -->
+      <nav class="faq-nav">
+        <h3>Jump To</h3>
+        <a href="#ordering">Ordering</a>
+        <a href="#shipping">Shipping</a>
+        <a href="#returns">Returns</a>
+        <a href="#tires">About Tires</a>
+        <a href="#financing">Financing</a>
+        <a href="#account">Account</a>
+      </nav>
+
+      <!-- FAQ Content -->
+      <div>
+
+        <div class="faq-section" id="ordering">
+          <div class="faq-section-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Ordering
+          </div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How do I place an order? <span class="faq-toggle">+</span></div><div class="faq-a">Browse our tire selection using the search by tire size or brand feature on the homepage. Once you find the right tires, add them to your cart and proceed to checkout. We accept all major credit cards, PayPal, and financing options.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Can I order by phone? <span class="faq-toggle">+</span></div><div class="faq-a">Yes! Our tire experts are available by phone at <a href="tel:8663358473" style="color:#e60000">(866) 335-8473</a> Monday–Friday 8am–6pm EST and Saturday 9am–4pm EST. They can help you select the right tires and place your order.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Do you offer bulk/fleet pricing? <span class="faq-toggle">+</span></div><div class="faq-a">Yes. We offer special pricing for fleet orders of 10+ tires. Contact our sales team at (866) 335-8473 or use the contact form to get a custom fleet quote.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How do I know which tire size I need? <span class="faq-toggle">+</span></div><div class="faq-a">Your tire size is printed on the sidewall of your existing tires (e.g., 295/75R22.5). You can also check your truck's door jamb sticker or owner's manual. Our team can also help you find the right size — just call us!</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Can I cancel or modify my order? <span class="faq-toggle">+</span></div><div class="faq-a">Orders can be cancelled or modified within 2 hours of placement. After that, the order may already be in processing. Contact us immediately at (866) 335-8473 if you need to make changes.</div></div>
+        </div>
+
+        <div class="faq-section" id="shipping">
+          <div class="faq-section-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            Shipping
+          </div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How much does shipping cost? <span class="faq-toggle">+</span></div><div class="faq-a">Shipping is FREE on orders over $500 to the contiguous United States. For orders under $500, a flat shipping fee of $49.99 applies. Alaska, Hawaii, and US territories may have different shipping rates.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How long does shipping take? <span class="faq-toggle">+</span></div><div class="faq-a">Most orders ship within 1-2 business days. Estimated delivery is 3-7 business days depending on your location. You'll receive a tracking number via email once your order ships.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Do you ship to Alaska and Hawaii? <span class="faq-toggle">+</span></div><div class="faq-a">Yes, we ship to Alaska and Hawaii, but additional shipping charges apply. Contact us for a shipping quote to these locations before placing your order.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How do I track my order? <span class="faq-toggle">+</span></div><div class="faq-a">Once your order ships, you'll receive an email with your tracking number. You can also track your order using our <a href="order-tracking.html" style="color:#e60000">Order Tracking</a> page.</div></div>
+        </div>
+
+        <div class="faq-section" id="returns">
+          <div class="faq-section-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.17"/></svg>
+            Returns &amp; Refunds
+          </div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What is your return policy? <span class="faq-toggle">+</span></div><div class="faq-a">We offer a 45-day return policy on all tires. Tires must be unused, unmounted, and in their original condition and packaging. Mounted or used tires cannot be returned.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How do I initiate a return? <span class="faq-toggle">+</span></div><div class="faq-a">Contact our customer service team at (866) 335-8473 or via the <a href="contact.html" style="color:#e60000">contact form</a>. We'll provide you with a Return Merchandise Authorization (RMA) number and return shipping instructions.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How long does a refund take? <span class="faq-toggle">+</span></div><div class="faq-a">Once we receive your returned tires and verify their condition, refunds are processed within 3-5 business days. The refund will appear on your original payment method within 5-10 business days depending on your bank.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What if I received a damaged or wrong tire? <span class="faq-toggle">+</span></div><div class="faq-a">Contact us within 48 hours of delivery with photos of the damage or incorrect items. We'll arrange a free replacement shipment at no cost to you.</div></div>
+        </div>
+
+        <div class="faq-section" id="tires">
+          <div class="faq-section-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+            About Tires
+          </div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What's the difference between steer, drive, and trailer tires? <span class="faq-toggle">+</span></div><div class="faq-a"><strong>Steer tires</strong> go on the front axle and are designed for excellent handling, steering response, and even wear. <strong>Drive tires</strong> go on the rear powered axles and feature deeper treads for better traction. <strong>Trailer tires</strong> are designed for lower rolling resistance and stability under load.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How do I read a tire size? <span class="faq-toggle">+</span></div><div class="faq-a">For example, <strong>295/75R22.5</strong>: 295 is the width in mm, 75 is the aspect ratio (height as % of width), R means radial, and 22.5 is the rim diameter in inches. For sizes like <strong>11R22.5</strong>, 11 is the width in inches.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What does SmartWay certified mean? <span class="faq-toggle">+</span></div><div class="faq-a">SmartWay is an EPA program that certifies tires meeting low rolling resistance standards. SmartWay certified tires can reduce fuel consumption by up to 3%, saving you money on long haul operations.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What is a retreadable casing? <span class="faq-toggle">+</span></div><div class="faq-a">A retreadable casing means the tire body can be reused with new tread applied after the original tread wears out. This significantly reduces cost per mile and is common in commercial truck operations.</div></div>
+        </div>
+
+        <div class="faq-section" id="financing">
+          <div class="faq-section-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Financing
+          </div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">What financing options are available? <span class="faq-toggle">+</span></div><div class="faq-a">We offer two financing options: <strong>PayPal Pay in 4</strong> (split purchase into 4 interest-free payments) and <strong>Katapult</strong> (lease-to-own with no credit needed). See our <a href="financing.html" style="color:#e60000">Financing page</a> for details.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Is there a minimum purchase for financing? <span class="faq-toggle">+</span></div><div class="faq-a">PayPal Pay in 4 requires a minimum purchase of $30 (max $1,500). Katapult has no minimum purchase requirement.</div></div>
+        </div>
+
+        <div class="faq-section" id="account">
+          <div class="faq-section-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Account
+          </div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">Do I need an account to place an order? <span class="faq-toggle">+</span></div><div class="faq-a">No, you can checkout as a guest. However, creating an account allows you to track orders, save addresses, view order history, and access member discounts.</div></div>
+          <div class="faq-item"><div class="faq-q" onclick="toggle(this)">How do I reset my password? <span class="faq-toggle">+</span></div><div class="faq-a">Click "Login" in the top navigation, then click "Forgot Password." Enter your email address and we'll send you a password reset link within a few minutes.</div></div>
+        </div>
+
+        <div style="background:#f5f5f5;border-radius:8px;padding:28px;text-align:center">
+          <h3 style="font-size:18px;font-weight:700;margin-bottom:10px">Still have questions?</h3>
+          <p style="color:#555;font-size:14px;margin-bottom:20px">Our tire experts are standing by to help.</p>
+          <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+            <a href="tel:8663358473" style="background:#e60000;color:#fff;padding:12px 24px;border-radius:4px;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:8px">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+              Call (866) 335-8473
+            </a>
+            <a href="contact.html" style="background:#1a1a1a;color:#fff;padding:12px 24px;border-radius:4px;font-size:14px;font-weight:700;display:inline-block">Send a Message</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="site-footer"></div>
+<script src="components.js"></script>
+<script src="products.generated.js"></script><script src="products.js"></script>
+<script src="script.js"></script>
+<script>
+function toggle(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+</script>
+</body>
+</html>

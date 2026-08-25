@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Double Coin Heavy Duty Truck Warehouse - Commercial Truck Tires For Less</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container top-bar-inner">
+    <span>Free shipping on orders over $500! Call us: <a href="tel:8663358473">(866) 335-8473</a></span>
+    <div class="top-bar-links">
+      <a href="order-tracking.html">Track Order</a>
+      <a href="login.html" data-auth-login>Login</a>
+      <a href="account.html" data-auth-account>My Account</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/hf1/h22/9603470295070/TET-Logo-Transparent.svg" alt="Double Coin Heavy Duty Truck Warehouse" height="48" />
+    </a>
+    <div class="header-search">
+      <input type="text" placeholder="Search by tire size, brand, or model..." class="search-input" id="mainSearch" />
+      <button class="search-btn" onclick="headerSearch()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+    </div>
+    <div class="header-actions">
+      <a href="account.html" class="action-icon" title="Account">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Account</span>
+      </a>
+      <a href="#" class="action-icon cart-icon" title="Cart" onclick="openCart(); return false;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count">0</span>
+      </a>
+    </div>
+    <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="main-nav" id="mainNav">
+    <div class="container nav-inner">
+      <a href="deals.html" class="nav-link deals-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Deals
+      </a>
+      <a href="membership.html" class="nav-link">Membership</a>
+      <a href="financing.html" class="nav-link">Financing</a>
+      <div class="nav-dropdown">
+        <a href="tires.html" class="nav-link">Shop Tires &#9660;</a>
+        <div class="dropdown-menu">
+          <a href="tires.html?cat=all-position">All Position Tires</a>
+          <a href="tires.html?cat=drive">Drive Tires</a>
+          <a href="tires.html?cat=steer">Steer Tires</a>
+          <a href="tires.html?cat=trailer">Trailer Tires</a>
+          <a href="tires.html?cat=rv">Motorhome / RV</a>
+        </div>
+      </div>
+      <a href="brands.html" class="nav-link">Brands</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title">COMMERCIAL TRUCK TIRES FOR LESS</h1>
+      <p class="hero-subtitle">Save on the widest selection of major brand truck tires online.</p>
+      <div class="tire-selector">
+        <div class="selector-tabs">
+          <button class="selector-tab active" data-tab="size">Search by Tire Size</button>
+          <button class="selector-tab" data-tab="brand">Search by Brand</button>
+        </div>
+        <div class="selector-panel active" id="tab-size">
+          <div class="size-inputs">
+            <div class="size-group">
+              <label>Width</label>
+              <div style="display:flex;align-items:center;gap:8px">
+                <img src="https://www.tires-easy-truck.com/_ui/versioned/009e6b461827b4a10dcf5ba88180b7b5bf21764e/responsive/theme-truck/images/tire-selector-width.webp" alt="width" style="height:36px;object-fit:contain" onerror="this.style.display='none'"/>
+                <select id="sel-width">
+                  <option value="">Width</option>
+                  <option>225</option><option>235</option><option>245</option>
+                  <option>255</option><option>265</option><option>275</option>
+                  <option>285</option><option>295</option><option>305</option>
+                  <option>315</option><option>385</option><option>425</option>
+                  <option>445</option><option>455</option><option>495</option>
+                </select>
+              </div>
+            </div>
+            <span class="size-sep">/</span>
+            <div class="size-group">
+              <label>Ratio</label>
+              <div style="display:flex;align-items:center;gap:8px">
+                <img src="https://www.tires-easy-truck.com/_ui/versioned/009e6b461827b4a10dcf5ba88180b7b5bf21764e/responsive/theme-truck/images/tire-selector-ratio.webp" alt="ratio" style="height:36px;object-fit:contain" onerror="this.style.display='none'"/>
+                <select id="sel-ratio">
+                  <option value="">Ratio</option>
+                  <option>65</option><option>70</option><option>75</option>
+                  <option>80</option><option>85</option><option>90</option>
+                </select>
+              </div>
+            </div>
+            <span class="size-sep">R</span>
+            <div class="size-group">
+              <label>Diameter</label>
+              <div style="display:flex;align-items:center;gap:8px">
+                <img src="https://www.tires-easy-truck.com/_ui/versioned/009e6b461827b4a10dcf5ba88180b7b5bf21764e/responsive/theme-truck/images/tire-selector-diameter.webp" alt="diameter" style="height:36px;object-fit:contain" onerror="this.style.display='none'"/>
+                <select id="sel-diameter">
+                  <option value="">Diameter</option>
+                  <option>15</option><option>16</option><option>17</option>
+                  <option>17.5</option><option>19.5</option><option>22.5</option>
+                  <option>24.5</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn-search-size" onclick="searchBySize()">SEARCH</button>
+          </div>
+        </div>
+        <div class="selector-panel" id="tab-brand">
+          <div class="brand-selector-grid">
+            <button class="brand-btn" onclick="searchBrand('Goodyear')">Goodyear</button>
+            <button class="brand-btn" onclick="searchBrand('Continental')">Continental</button>
+            <button class="brand-btn" onclick="searchBrand('Cooper')">Cooper</button>
+            <button class="brand-btn" onclick="searchBrand('Hankook')">Hankook</button>
+            <button class="brand-btn" onclick="searchBrand('Double Coin')">Double Coin</button>
+            <button class="brand-btn" onclick="searchBrand('Toyo')">Toyo</button>
+            <button class="brand-btn" onclick="searchBrand('Fortune')">Fortune</button>
+            <button class="brand-btn" onclick="searchBrand('Goodride')">Goodride</button>
+          </div>
+          <a href="brands.html" class="see-all-brands">See all brands &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES BAR -->
+<section class="features-bar">
+  <div class="container features-grid">
+    <div class="feature-item">
+      <div class="feature-icon">
+        <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/hd5/h16/9503594020894/FeaturesReturn.svg" alt="Returns" width="40" height="40" onerror="this.outerHTML='<svg width=\'36\' height=\'36\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#e60000\' stroke-width=\'1.8\'><polyline points=\'23 6 13.5 15.5 8.5 10.5 1 18\'/></svg>'"/>
+      </div>
+      <div class="feature-text">
+        <strong>45 Day Returns</strong>
+        <span>Easy, hassle-free returns</span>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">
+        <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h3b/h8f/9503593988126/FeaturesFinancing.svg" alt="Financing" width="40" height="40" onerror="this.outerHTML='<svg width=\'36\' height=\'36\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#e60000\' stroke-width=\'1.8\'><rect x=\'1\' y=\'4\' width=\'22\' height=\'16\' rx=\'2\'/></svg>'"/>
+      </div>
+      <div class="feature-text">
+        <strong>Buy Now, Pay Later</strong>
+        <span>Flexible financing options</span>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">
+        <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h57/hde/9503594053662/FeaturesLowPrices.svg" alt="Low Prices" width="40" height="40" onerror="this.outerHTML='<svg width=\'36\' height=\'36\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#e60000\' stroke-width=\'1.8\'><line x1=\'12\' y1=\'1\' x2=\'12\' y2=\'23\'/><path d=\'M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\'/></svg>'"/>
+      </div>
+      <div class="feature-text">
+        <strong>Low Prices Guaranteed</strong>
+        <span>Best prices on major brands</span>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#e60000" stroke-width="1.8"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <div class="feature-text">
+        <strong>Fast Shipping</strong>
+        <span>Free on orders over $500</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES SECTION -->
+<section class="section categories-section">
+  <div class="container">
+    <h2 class="section-title">Shop by Category</h2>
+    <div class="categories-grid">
+      <a href="tires.html?cat=all-position" class="category-card">
+        <div class="category-img">
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h85/he8/9162278174750/all-position-cat.png" alt="All Position" width="80" height="80" style="object-fit:contain" onerror="this.style.display='none'"/>
+        </div>
+        <h3>Commercial Truck<br>All Position</h3>
+        <span class="category-link">Shop Now &rarr;</span>
+      </a>
+      <a href="tires.html?cat=drive" class="category-card">
+        <div class="category-img">
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h5c/h12/9162278240286/drive-icon.png" alt="Drive" width="80" height="80" style="object-fit:contain" onerror="this.style.display='none'"/>
+        </div>
+        <h3>Commercial Truck<br>Drive</h3>
+        <span class="category-link">Shop Now &rarr;</span>
+      </a>
+      <a href="tires.html?cat=steer" class="category-card">
+        <div class="category-img">
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h88/h32/9162278305822/steer-cat.png" alt="Steer" width="80" height="80" style="object-fit:contain" onerror="this.style.display='none'"/>
+        </div>
+        <h3>Commercial Truck<br>Steer</h3>
+        <span class="category-link">Shop Now &rarr;</span>
+      </a>
+      <a href="tires.html?cat=trailer" class="category-card">
+        <div class="category-img">
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h13/ha4/9162278371358/trailer-icons.png" alt="Trailer" width="80" height="80" style="object-fit:contain" onerror="this.style.display='none'"/>
+        </div>
+        <h3>Commercial Truck<br>Trailer</h3>
+        <span class="category-link">Shop Now &rarr;</span>
+      </a>
+      <a href="tires.html?cat=rv" class="category-card">
+        <div class="category-img">
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h9a/h35/9182273470494/motorhome2.png" alt="Motorhome RV" width="80" height="80" style="object-fit:contain" onerror="this.style.display='none'"/>
+        </div>
+        <h3>Motorhome / RV</h3>
+        <span class="category-link">Shop Now &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR BRANDS -->
+<section class="section brands-section">
+  <div class="container">
+    <h2 class="section-title">Popular Brands</h2>
+    <div class="brands-grid">
+      <a href="tires.html?brand=Arisun" class="brand-logo-card"><img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h6a/hf4/9503592415262/arisun-tires-logo.webp" alt="Arisun" style="max-height:40px;max-width:110px;object-fit:contain" onerror="this.outerHTML='<span>Arisun</span>'"/></a>
+      <a href="tires.html?brand=Continental" class="brand-logo-card"><img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h0b/haa/9503592185886/continental-logo.webp" alt="Continental" style="max-height:40px;max-width:110px;object-fit:contain" onerror="this.outerHTML='<span>Continental</span>'"/></a>
+      <a href="tires.html?brand=Cooper" class="brand-logo-card"><img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h82/h4f/9503592251422/cooper-logo.webp" alt="Cooper" style="max-height:40px;max-width:110px;object-fit:contain" onerror="this.outerHTML='<span>Cooper</span>'"/></a>
+      <a href="tires.html?brand=Double+Coin" class="brand-logo-card"><img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h3b/h61/9503592513566/double-coin-logo.webp" alt="Double Coin" style="max-height:40px;max-width:110px;object-fit:contain" onerror="this.outerHTML='<span>Double Coin</span>'"/></a>
+      <a href="tires.html?brand=Fortune" class="brand-logo-card"><img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/hd1/hb0/9503592546334/fortune-logo.webp" alt="Fortune" style="max-height:40px;max-width:110px;object-fit:contain" onerror="this.outerHTML='<span>Fortune</span>'"/></a>
+      <a href="tires.html?brand=Goodride" class="brand-logo-card"><img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h73/h01/9503592611870/goodride-logo.webp" alt="Goodride" style="max-height:40px;max-width:110px;object-fit:contain" onerror="this.outerHTML='<span>Goodride</span>'"/></a>
+      <a href="tires.html?brand=Goodyear" class="brand-logo-card"><img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h52/hf2/9503592218654/goodyear-logo.webp" alt="Goodyear" style="max-height:40px;max-width:110px;object-fit:contain" onerror="this.outerHTML='<span>Goodyear</span>'"/></a>
+      <a href="tires.html?brand=Hankook" class="brand-logo-card"><img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/hb1/had/9503592284190/hankook-logo.webp" alt="Hankook" style="max-height:40px;max-width:110px;object-fit:contain" onerror="this.outerHTML='<span>Hankook</span>'"/></a>
+      <a href="tires.html?brand=Hercules" class="brand-logo-card"><img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h38/h5c/9503592742942/hercules-logo.webp" alt="Hercules" style="max-height:40px;max-width:110px;object-fit:contain" onerror="this.outerHTML='<span>Hercules</span>'"/></a>
+      <a href="tires.html?brand=Ironman" class="brand-logo-card"><img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/ha2/h0c/9503592775710/ironman-tires-logo.webp" alt="Ironman" style="max-height:40px;max-width:110px;object-fit:contain" onerror="this.outerHTML='<span>Ironman</span>'"/></a>
+      <a href="tires.html?brand=Milestar" class="brand-logo-card"><img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h71/h9e/9503592808478/milestar-logo.webp" alt="Milestar" style="max-height:40px;max-width:110px;object-fit:contain" onerror="this.outerHTML='<span>Milestar</span>'"/></a>
+      <a href="tires.html?brand=Toyo" class="brand-logo-card"><img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/he9/hb2/9503592349726/toyo-logo.webp" alt="Toyo" style="max-height:40px;max-width:110px;object-fit:contain" onerror="this.outerHTML='<span>Toyo</span>'"/></a>
+    </div>
+    <div class="section-footer">
+      <a href="brands.html" class="btn-outline">See All Brands</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="section products-section">
+  <div class="container">
+    <h2 class="section-title">Featured Tires</h2>
+    <div class="products-grid" id="featuredGrid"></div>
+    <div class="section-footer">
+      <a href="tires.html" class="btn-outline">View All Tires</a>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP BANNER -->
+<section class="membership-banner">
+  <div class="container">
+    <div class="membership-content">
+      <div class="membership-text">
+        <h2>Become a Member &amp; Save More</h2>
+        <p>Get access to exclusive member savings on major brand truck tires. Members enjoy additional discounts on every order, priority shipping, and early access to deals.</p>
+        <a href="membership.html" class="btn-white">Join Now</a>
+      </div>
+      <div class="membership-graphic">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <polygon points="60,10 75,45 115,45 82,68 95,105 60,82 25,105 38,68 5,45 45,45" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+          <polygon points="60,20 72,50 105,50 80,68 90,100 60,79 30,100 40,68 15,50 48,50" fill="rgba(255,255,255,0.15)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCING SECTION -->
+<section class="section financing-section">
+  <div class="container">
+    <h2 class="section-title">Buy Now, Pay Over Time</h2>
+    <p class="section-subtitle">Flexible financing options to help you get the tires you need today.</p>
+    <div class="financing-partners">
+      <div class="financing-card">
+        <div class="financing-logo">
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h8f/h4b/9503593070622/KatapultLogo.webp" alt="Katapult" style="max-height:50px;max-width:160px;object-fit:contain" onerror="this.outerHTML='<span style=\'font-size:26px;font-weight:700;color:#ff6600\'>Katapult</span>'"/>
+        </div>
+        <p>Lease-to-own financing with no credit needed. Apply in seconds.</p>
+        <a href="financing.html" class="btn-outline">Learn More</a>
+      </div>
+      <div class="financing-card">
+        <div class="financing-logo">
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h04/h33/9503593005086/PaypaltLogo.webp" alt="PayPal" style="max-height:50px;max-width:160px;object-fit:contain" onerror="this.outerHTML='<span style=\'font-size:26px;font-weight:700;color:#003087\'>PayPal</span>'"/>
+        </div>
+        <p>Pay in 4 interest-free payments with PayPal Pay Later.</p>
+        <a href="financing.html" class="btn-outline">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG SECTION -->
+<section class="section blog-section">
+  <div class="container">
+    <h2 class="section-title">From The Blog</h2>
+    <div class="blog-grid">
+      <article class="blog-card">
+        <div class="blog-img">
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/hfd/he2/11136528613406/The-Ultimate-Guide-to-Best-Winter-Tires-for-Trucks.webp" alt="Winter Tires" style="width:100%;height:200px;object-fit:cover" onerror="this.style.background='#222';this.style.display='block'"/>
+        </div>
+        <div class="blog-content">
+          <span class="blog-date">09.14.2025</span>
+          <h3 class="blog-title">The Ultimate Guide to Best Winter Tires for Trucks</h3>
+          <p class="blog-excerpt">Discover the top winter tire options for commercial trucks to keep your fleet safe and productive through the cold months.</p>
+          <a href="blog.html" class="blog-link">Read More &rarr;</a>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-img">
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h9c/h28/11136531824670/Best-RV-Tires-for-Travel-Trailers-Your-Ultimate-Guide.webp" alt="RV Tires" style="width:100%;height:200px;object-fit:cover" onerror="this.style.background='#222';this.style.display='block'"/>
+        </div>
+        <div class="blog-content">
+          <span class="blog-date">09.21.2025</span>
+          <h3 class="blog-title">Best RV Tires for Travel Trailers: Your Ultimate Guide</h3>
+          <p class="blog-excerpt">Find the perfect tires for your travel trailer or motorhome with our comprehensive buyer's guide and expert recommendations.</p>
+          <a href="blog.html" class="blog-link">Read More &rarr;</a>
+        </div>
+      </article>
+      <article class="blog-card">
+        <div class="blog-img">
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h65/h96/11136533692446/Best-Tires-for-My-Truck-Top-Picks-for-Every-Driving-Condition.jpg" alt="Truck Tires" style="width:100%;height:200px;object-fit:cover" onerror="this.style.background='#222';this.style.display='block'"/>
+        </div>
+        <div class="blog-content">
+          <span class="blog-date">09.14.2025</span>
+          <h3 class="blog-title">Best Tires for My Truck: Top Picks for Every Driving Condition</h3>
+          <p class="blog-excerpt">Whether you haul on highways or navigate off-road terrain, we break down the best truck tires for every driving need.</p>
+          <a href="blog.html" class="blog-link">Read More &rarr;</a>
+        </div>
+      </article>
+    </div>
+    <div class="section-footer">
+      <a href="blog.html" class="btn-outline">View All Articles</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h01/h4d/9503593857054/FooterLogo.webp" alt="Double Coin Heavy Duty Truck Warehouse" style="max-height:48px;object-fit:contain" onerror="this.style.display='none'"/>
+        </div>
+        <p class="footer-desc">Save on the widest selection of major brand commercial truck tires online.</p>
+        <div class="footer-contact">
+          <p>356 Peachtree St. NE<br>Pelham, GA 31779</p>
+          <p><a href="tel:8663358473">(866) 335-8473</a></p>
+          <p><a href="mailto:info@doublecoins-heavyduty.com">info@doublecoins-heavyduty.com</a></p>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-link" title="Facebook">
+            <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h01/hfb/9503593332766/FacebookIcon.svg" alt="Facebook" width="18" height="18" onerror="this.outerHTML='<svg width=18 height=18 viewBox=\'0 0 24 24\' fill=\'currentColor\'><path d=\'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z\'/></svg>'"/>
+          </a>
+          <a href="#" class="social-link" title="YouTube">
+            <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h02/h92/9503593299998/YoutubeIcon.svg" alt="YouTube" width="18" height="18" onerror="this.outerHTML='<svg width=18 height=18 viewBox=\'0 0 24 24\' fill=\'currentColor\'><rect x=\'2\' y=\'7\' width=\'20\' height=\'15\' rx=\'2\'/></svg>'"/>
+          </a>
+          <a href="#" class="social-link" title="Instagram">
+            <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/hd4/h05/9503593365534/InstagramIcon.svg" alt="Instagram" width="18" height="18" onerror="this.outerHTML='<svg width=18 height=18 viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\'><rect x=\'2\' y=\'2\' width=\'20\' height=\'20\' rx=\'5\'/></svg>'"/>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Shop Tires</h4>
+        <ul class="footer-links">
+          <li><a href="tires.html?cat=all-position">All Position Tires</a></li>
+          <li><a href="tires.html?cat=steer">Steer Tires</a></li>
+          <li><a href="tires.html?cat=drive">Drive Tires</a></li>
+          <li><a href="tires.html?cat=trailer">Trailer Tires</a></li>
+          <li><a href="tires.html?cat=rv">Motorhome / RV</a></li>
+          <li><a href="deals.html">Deals &amp; Specials</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Useful Links</h4>
+        <ul class="footer-links">
+          <li><a href="brands.html">All Brands</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="financing.html">Financing</a></li>
+          <li><a href="shipping.html">Shipping &amp; Payment</a></li>
+          <li><a href="returns.html">Return Policy</a></li>
+          <li><a href="membership.html">Membership</a></li>
+          <li><a href="order-tracking.html">Track Your Order</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Newsletter</h4>
+        <p class="footer-desc">Subscribe to get exclusive deals and tire tips delivered to your inbox.</p>
+        <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+          <input type="email" placeholder="Enter your email" class="newsletter-input" required />
+          <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+        <div class="footer-heading" style="margin-top:24px">We Accept</div>
+        <div class="payment-icons" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/ha7/hfb/9503593398302/VisaLogoSmall.webp" alt="Visa" style="height:28px;object-fit:contain;background:#fff;border-radius:3px;padding:2px 4px" onerror="this.outerHTML='<span class=payment-icon>VISA</span>'"/>
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h68/h0a/9503593463838/MastercardLogoSmall.webp" alt="Mastercard" style="height:28px;object-fit:contain;background:#fff;border-radius:3px;padding:2px 4px" onerror="this.outerHTML='<span class=payment-icon>MC</span>'"/>
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/hdb/h0f/9503593529374/AmericanExpressLogoSmall.webp" alt="Amex" style="height:28px;object-fit:contain;background:#fff;border-radius:3px;padding:2px 4px" onerror="this.outerHTML='<span class=payment-icon>AMEX</span>'"/>
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h7f/h9a/9503593627678/PaypalLogoSmall.webp" alt="PayPal" style="height:28px;object-fit:contain;background:#fff;border-radius:3px;padding:2px 4px" onerror="this.outerHTML='<span class=payment-icon>PayPal</span>'"/>
+          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h50/h08/9503593660446/DiscoverLogoSmall.webp" alt="Discover" style="height:28px;object-fit:contain;background:#fff;border-radius:3px;padding:2px 4px" onerror="this.outerHTML='<span class=payment-icon>Discover</span>'"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; 2026 Double Coin Heavy Duty Truck Warehouse&reg; All Rights Reserved</p>
+      <div class="footer-legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="sitemap.html">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING CONTACT BUTTONS -->
+<div class="floating-contact">
+  <a href="sms:+13104925660" class="floating-btn floating-btn-sms" title="SMS: 310-492-5660">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  </a>
+  <a href="https://wa.me/13108781781" target="_blank" rel="noopener" class="floating-btn floating-btn-whatsapp" title="WhatsApp: 310-878-1781">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="cart-close" onclick="closeCart()">&times;</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">Total: <strong id="cartTotal">$0.00</strong></div>
+    <button class="btn-checkout" onclick="window.location.href='checkout.html'">Checkout</button>
+  </div>
+</div>
+
+<script src="products.generated.js"></script><script src="products.js"></script>
+<script src="script.js"></script>
+<script>
+// Render featured products on homepage
+document.addEventListener('DOMContentLoaded', function() {
+  const featured = PRODUCTS.filter(p => p.oldPrice || p.reviews > 20).slice(0, 6);
+  document.getElementById('featuredGrid').innerHTML = featured.map(p => productCardHTML(p)).join('');
+  updateCartUI();
+});
+
+function toggleMobileNav() {
+  const nav = document.getElementById('mainNav');
+  const btn = document.querySelector('.hamburger');
+  if (nav) nav.classList.toggle('open');
+  if (btn) btn.classList.toggle('open');
+}
+
+function headerSearch() {
+  const q = document.getElementById('mainSearch').value.trim();
+  if (q) window.location.href = 'tires.html?q=' + encodeURIComponent(q);
+}
+
+function searchBySize() {
+  const w = document.getElementById('sel-width').value;
+  const r = document.getElementById('sel-ratio').value;
+  const d = document.getElementById('sel-diameter').value;
+  if (!w || !r || !d) { showToast('Please select Width, Ratio, and Diameter'); return; }
+  window.location.href = 'tires.html?width='+w+'&ratio='+r+'&diameter='+d;
+}
+function searchBrand(b) { window.location.href = 'tires.html?brand=' + encodeURIComponent(b); }
+function subscribeNewsletter(e) { e.preventDefault(); showToast('Thank you for subscribing!', 'success'); e.target.reset(); }
+
+document.querySelectorAll('.selector-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.selector-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.selector-panel').forEach(p => p.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById('tab-' + this.dataset.tab)?.classList.add('active');
+  });
+});
+
+document.querySelector('.search-input')?.addEventListener('keydown', e => {
+  if (e.key === 'Enter') headerSearch();
+});
+</script>
+</body>
+</html>
