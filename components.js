@@ -16,7 +16,7 @@ const HEADER_HTML = `
 <header class="header">
   <div class="container header-inner">
     <a href="index.html" class="logo">
-      <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/hf1/h22/9603470295070/TET-Logo-Transparent.svg" alt="Double Coin Heavy Duty Truck Warehouse" height="48" />
+      <img src="logo.svg" alt="Double Coin Heavy Duty Truck Warehouse" height="48" />
     </a>
     <div class="header-search">
       <input type="text" placeholder="Search by tire size, brand, or model..." class="search-input" id="mainSearch"/>
@@ -68,7 +68,7 @@ const FOOTER_HTML = `
     <div class="container footer-grid">
       <div class="footer-col">
         <div class="footer-logo">
-          <img src="https://www.tires-easy-truck.com/medias/sys_master/images/images/h01/h4d/9503593857054/FooterLogo.webp" alt="Double Coin Heavy Duty Truck Warehouse" height="40" />
+          <img src="logo.svg" alt="Double Coin Heavy Duty Truck Warehouse" height="40" />
         </div>
         <p class="footer-desc">Save on the widest selection of major brand commercial truck tires online.</p>
         <div class="footer-contact">
