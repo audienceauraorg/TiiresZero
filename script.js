@@ -224,11 +224,10 @@ document.querySelector('.search-input')?.addEventListener('keydown', e => {
 function subscribeNewsletter(e) {
   e.preventDefault();
   const email = e.target.querySelector('input').value;
-  sendEmail(
-    'trucktireswarehouse@gmail.com',
-    'New Newsletter Subscriber',
-    '<h2>New Newsletter Subscription</h2><p><strong>Email:</strong> ' + email + '</p><p>Subscribed from the website footer.</p>'
-  );
+  Promise.all([
+    sendEmail('trucktireswarehouse@gmail.com','New Newsletter Subscriber','<h2>New Newsletter Subscription</h2><p><strong>Email:</strong> ' + email + '</p><p>Subscribed from the website footer.</p>'),
+    sendEmail('info@doublecoins-heavyduty.com','New Newsletter Subscriber','<h2>New Newsletter Subscription</h2><p><strong>Email:</strong> ' + email + '</p><p>Subscribed from the website footer.</p>')
+  ]).catch(function(err) { console.log('Newsletter email error:', err); });
   showToast('Thank you for subscribing, ' + email + '!', 'success');
   e.target.reset();
   return false;
@@ -288,16 +287,30 @@ async function registerUser(event) {
   localStorage.setItem(AUTH_USERS_KEY, JSON.stringify(users));
   localStorage.setItem(AUTH_SESSION_KEY, JSON.stringify({ name, email, company, plan }));
   updateAuthUI();
-  sendEmail(
-    'trucktireswarehouse@gmail.com',
-    'New Member Signup: ' + name,
-    '<h2>New Member Registration</h2>' +
+  var signupBody = '<h2>New Member Registration</h2>' +
     '<p><strong>Name:</strong> ' + name + '</p>' +
     '<p><strong>Email:</strong> ' + email + '</p>' +
     '<p><strong>Company:</strong> ' + (company || 'Not provided') + '</p>' +
     '<p><strong>Plan:</strong> ' + plan + '</p>' +
-    '<p><strong>Date:</strong> ' + new Date().toLocaleString() + '</p>'
-  );
+    '<p><strong>Date:</strong> ' + new Date().toLocaleString() + '</p>';
+  var welcomeBody = '<div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif">' +
+    '<div style="background:#1a1a1a;padding:24px;text-align:center"><h1 style="color:#fff;margin:0;font-size:22px">Double Coin Heavy Duty Truck Warehouse</h1></div>' +
+    '<div style="padding:28px;background:#fff">' +
+    '<h2 style="color:#1a1a1a;margin-top:0">Welcome, ' + name + '!</h2>' +
+    '<p style="color:#555;font-size:14px;line-height:1.7">Your account has been created successfully. You now have access to exclusive member pricing and features.</p>' +
+    '<p style="font-size:14px"><strong>Plan:</strong> ' + plan + '</p>' +
+    '<hr style="border:none;border-top:1px solid #eee;margin:24px 0">' +
+    '<p style="font-size:13px;color:#999">If you have any questions, contact us at <a href="tel:3104925660" style="color:#e60000">(310) 492-5660</a>.</p>' +
+    '</div>' +
+    '<div style="background:#f5f5f5;padding:16px;text-align:center;font-size:12px;color:#999">&copy; 2026 Double Coin Heavy Duty Truck Warehouse. All rights reserved.</div>' +
+    '</div>';
+  try {
+    await Promise.all([
+      sendEmail('trucktireswarehouse@gmail.com','New Member Signup: ' + name, signupBody),
+      sendEmail('info@doublecoins-heavyduty.com','New Member Signup: ' + name, signupBody),
+      sendEmail(email,'Welcome to Double Coin Heavy Duty Truck Warehouse', welcomeBody)
+    ]);
+  } catch(e) { console.log('Signup email error:', e.message); }
   showToast('Account created successfully.', 'success');
   setTimeout(() => { window.location.href = 'account.html'; }, 500);
   return false;
@@ -322,18 +335,21 @@ function signOut() {
   showToast('You have been signed out.', 'success');
 }
 
-// --- Email via Titan SMTP (SmtpJS) ---
+// --- Email via server-side Nodemailer ---
 function sendEmail(to, subject, body) {
-  if (typeof Email === 'undefined') { console.log('SmtpJS not loaded — email skipped'); return Promise.resolve('skipped'); }
-  return Email.send({
-    Host: 'smtp.titan.email',
-    Username: 'info@doublecoins-heavyduty.com',
-    Password: 'Talktome@123',
-    To: to,
-    From: 'info@doublecoins-heavyduty.com',
-    Subject: subject,
-    Body: body
-  });
+  return fetch('/api/send-email', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ to: to, subject: subject, body: body })
+  }).then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (data.ok) { console.log('Email sent to ' + to); return 'OK'; }
+      console.error('Email failed to ' + to, data.error);
+      return 'FAILED';
+    }).catch(function(err) {
+      console.error('Email request failed:', err);
+      return 'FAILED';
+    });
 }
 
 // --- Toast ---

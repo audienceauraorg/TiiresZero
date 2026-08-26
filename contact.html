@@ -120,7 +120,7 @@
 <div id="site-footer"></div>
 <script src="components.js"></script>
 <script src="products.generated.js"></script><script src="products.js"></script>
-<script src="https://smtpjs.com/v3/smtp.js"></script>
+
 <script src="script.js"></script>
 <script>
 function sendMessage(e) {
@@ -136,10 +136,7 @@ function sendMessage(e) {
   const btn = form.querySelector('.btn-send');
   btn.disabled = true;
   btn.textContent = 'Sending...';
-  sendEmail(
-    'trucktireswarehouse@gmail.com',
-    'Contact Form: ' + subject,
-    '<h2>New Contact Form Submission</h2>' +
+  var adminBody = '<h2>New Contact Form Submission</h2>' +
     '<p><strong>Name:</strong> ' + firstName + ' ' + lastName + '</p>' +
     '<p><strong>Email:</strong> ' + email + '</p>' +
     '<p><strong>Phone:</strong> ' + (phone || 'Not provided') + '</p>' +
@@ -147,9 +144,29 @@ function sendMessage(e) {
     '<p><strong>Order #:</strong> ' + (orderNum || 'N/A') + '</p>' +
     '<hr>' +
     '<p><strong>Message:</strong></p>' +
-    '<p>' + message.replace(/\n/g, '<br>') + '</p>'
-  ).then(function(r) {
-    if (r === 'OK') {
+    '<p>' + message.replace(/\n/g, '<br>') + '</p>';
+  var customerBody = '<div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif">' +
+    '<div style="background:#1a1a1a;padding:24px;text-align:center"><h1 style="color:#fff;margin:0;font-size:22px">Double Coin Heavy Duty Truck Warehouse</h1></div>' +
+    '<div style="padding:28px;background:#fff">' +
+    '<h2 style="color:#1a1a1a;margin-top:0">We received your message, ' + firstName + '!</h2>' +
+    '<p style="color:#555;font-size:14px;line-height:1.7">Thank you for reaching out. Our team will respond within 1 business day.</p>' +
+    '<h3 style="color:#1a1a1a;border-bottom:1px solid #eee;padding-bottom:8px">Your Message Details</h3>' +
+    '<p style="font-size:14px"><strong>Subject:</strong> ' + subject + '</p>' +
+    (orderNum ? '<p style="font-size:14px"><strong>Order #:</strong> ' + orderNum + '</p>' : '') +
+    '<p style="font-size:14px"><strong>Message:</strong></p>' +
+    '<p style="font-size:14px;color:#555">' + message.replace(/\n/g, '<br>') + '</p>' +
+    '<hr style="border:none;border-top:1px solid #eee;margin:24px 0">' +
+    '<p style="font-size:13px;color:#999">If you need immediate assistance, call us at <a href="tel:3104925660" style="color:#e60000">(310) 492-5660</a>.</p>' +
+    '</div>' +
+    '<div style="background:#f5f5f5;padding:16px;text-align:center;font-size:12px;color:#999">&copy; 2026 Double Coin Heavy Duty Truck Warehouse. All rights reserved.</div>' +
+    '</div>';
+  Promise.all([
+    sendEmail('trucktireswarehouse@gmail.com', 'Contact Form: ' + subject, adminBody),
+    sendEmail('info@doublecoins-heavyduty.com', 'Contact Form: ' + subject, adminBody),
+    sendEmail(email, 'We received your message - Double Coin Heavy Duty Truck Warehouse', customerBody)
+  ]).then(function(results) {
+    var ok = results.some(function(r) { return r === 'OK'; });
+    if (ok) {
       showToast('Message sent! We\'ll respond within 1 business day.', 'success');
       form.reset();
     } else {
