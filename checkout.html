@@ -32,17 +32,10 @@
     .btn-place-order{width:100%;padding:16px;background:#28a745;color:#fff;border:none;font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;border-radius:4px;cursor:pointer;margin-top:16px;letter-spacing:.5px;}
     .btn-place-order:hover{background:#218838;}
     .secure-badge{text-align:center;font-size:12px;color:#999;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:6px;}
-    .payment-section .card-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
-    .payment-tabs{display:flex;gap:0;border:1px solid #ddd;border-radius:6px;overflow:hidden;margin-bottom:20px;}
-    .pay-tab{flex:1;padding:11px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;border:none;background:#f5f5f5;cursor:pointer;transition:all .2s;}
-    .pay-tab.active{background:#1a1a1a;color:#fff;}
     @media(max-width:900px){.checkout-layout{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}}
     @media(max-width:768px){
       .checkout-section{padding:18px;}
       .order-summary-card{position:static;padding:18px;}
-      .payment-section .card-row{grid-template-columns:1fr;}
-      .payment-tabs{flex-direction:column;}
-      .pay-tab{padding:12px;text-align:center;}
     }
   </style>
 </head>
@@ -88,30 +81,11 @@
           <div class="form-row"><div class="form-group"><label>ZIP Code</label><input type="text" placeholder="00000"/></div><div class="form-group"><label>Country</label><select><option>United States</option></select></div></div>
         </div>
 
-        <!-- Payment -->
-        <div class="checkout-section payment-section">
-          <h2><span class="step-num">3</span>Payment Method</h2>
-          <div class="payment-tabs">
-            <button class="pay-tab active" onclick="setPayTab(this,'card')">Credit / Debit Card</button>
-            <button class="pay-tab" onclick="setPayTab(this,'paypal')">PayPal</button>
-            <button class="pay-tab" onclick="setPayTab(this,'katapult')">Katapult</button>
-          </div>
-          <div id="pay-card">
-            <div class="form-row single"><div class="form-group"><label>Card Number</label><input type="text" placeholder="1234 5678 9012 3456" maxlength="19"/></div></div>
-            <div class="card-row">
-              <div class="form-group"><label>Name on Card</label><input type="text" placeholder="John Doe"/></div>
-              <div class="form-group"><label>Expiry Date</label><input type="text" placeholder="MM / YY" maxlength="7"/></div>
-              <div class="form-group"><label>CVV</label><input type="text" placeholder="123" maxlength="4"/></div>
-            </div>
-          </div>
-          <div id="pay-paypal" style="display:none;text-align:center;padding:20px">
-            <p style="font-size:14px;color:#555;margin-bottom:16px">You'll be redirected to PayPal to complete your payment securely.</p>
-            <button style="background:#003087;color:#fff;border:none;padding:14px 32px;border-radius:4px;font-size:15px;font-weight:700;cursor:pointer">Continue with PayPal</button>
-          </div>
-          <div id="pay-katapult" style="display:none;text-align:center;padding:20px">
-            <p style="font-size:14px;color:#555;margin-bottom:16px">Lease-to-own with no credit needed. Apply in seconds and get your tires today.</p>
-            <button style="background:#ff6600;color:#fff;border:none;padding:14px 32px;border-radius:4px;font-size:15px;font-weight:700;cursor:pointer">Apply with Katapult</button>
-          </div>
+        <!-- Additional Info -->
+        <div class="checkout-section">
+          <h2><span class="step-num">3</span>Additional Information</h2>
+          <div class="form-row single"><div class="form-group"><label>Company Name (optional)</label><input type="text" placeholder="Your company name"/></div></div>
+          <div class="form-row single"><div class="form-group"><label>Order Notes (optional)</label><textarea style="padding:11px 13px;border:1px solid #ddd;border-radius:4px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;resize:vertical;min-height:80px;" placeholder="Any special instructions or notes for your order..."></textarea></div></div>
         </div>
       </div>
 
@@ -122,14 +96,8 @@
         <div class="os-row"><span>Subtotal</span><span id="osSubtotal">$0.00</span></div>
         <div class="os-row"><span>Shipping</span><span id="osShipping">—</span></div>
         <div class="os-row total"><span>Total</span><span id="osTotal">$0.00</span></div>
-        <button class="btn-place-order" onclick="placeOrder()">Place Order</button>
-        <div class="secure-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          Secure 256-bit SSL encryption
-        </div>
-        <div class="payment-methods-row" style="margin-top:12px;padding-top:12px;border-top:1px solid #e0e0e0;display:flex;gap:5px;flex-wrap:wrap">
-          <span class="payment-icon">VISA</span><span class="payment-icon">MC</span><span class="payment-icon">AMEX</span><span class="payment-icon">PayPal</span><span class="payment-icon">Discover</span>
-        </div>
+        <button class="btn-place-order" onclick="placeOrder()">Submit Order Request</button>
+        <p style="text-align:center;font-size:12px;color:#999;margin-top:12px">Our team will contact you to confirm your order and arrange payment.</p>
       </div>
     </div>
   </div>
@@ -164,26 +132,66 @@ function initPage() {
   document.getElementById('osTotal').textContent='$'+(subtotal+shipping).toFixed(2);
 }
 
-function setPayTab(btn,tab) {
-  document.querySelectorAll('.pay-tab').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  ['card','paypal','katapult'].forEach(t=>{
-    const el=document.getElementById('pay-'+t);
-    if(el) el.style.display=t===tab?'block':'none';
-  });
-}
-
 function placeOrder() {
   if(!cart.length){showToast('Your cart is empty.');return;}
+  const inputs=document.querySelectorAll('.checkout-section input,.checkout-section select,.checkout-section textarea');
+  const email=inputs[0]?.value.trim();
+  const firstName=inputs[1]?.value.trim();
+  const lastName=inputs[2]?.value.trim();
+  const phone=inputs[3]?.value.trim();
+  if(!email||!firstName||!lastName){showToast('Please fill in your contact information.');return;}
+  const address1=inputs[4]?.value.trim();
+  const address2=inputs[5]?.value.trim();
+  const city=inputs[6]?.value.trim();
+  const state=inputs[7]?.value;
+  const zip=inputs[8]?.value.trim();
+  if(!address1||!city||!state||!zip){showToast('Please fill in your shipping address.');return;}
+  const company=inputs[10]?.value.trim()||'';
+  const notes=document.querySelector('.checkout-section textarea')?.value.trim()||'';
+  const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  const shipping=subtotal>=500?0:49.99;
+  const itemsHtml=cart.map(i=>'<tr><td style="padding:6px;border-bottom:1px solid #eee">'+i.brand+' '+i.name+'</td><td style="padding:6px;border-bottom:1px solid #eee">'+i.qty+'</td><td style="padding:6px;border-bottom:1px solid #eee">$'+(i.price*i.qty).toFixed(2)+'</td></tr>').join('');
+  const adminBody='<h2>New Order Request</h2>'+
+    '<h3>Contact</h3>'+
+    '<p><strong>Name:</strong> '+firstName+' '+lastName+'</p>'+
+    '<p><strong>Email:</strong> '+email+'</p>'+
+    '<p><strong>Phone:</strong> '+(phone||'Not provided')+'</p>'+
+    (company?'<p><strong>Company:</strong> '+company+'</p>':'')+
+    '<h3>Shipping Address</h3>'+
+    '<p>'+address1+(address2?', '+address2:'')+'<br>'+city+', '+state+' '+zip+'</p>'+
+    '<h3>Items Ordered</h3>'+
+    '<table style="border-collapse:collapse;width:100%"><tr><th style="text-align:left;padding:6px;border-bottom:2px solid #333">Item</th><th style="text-align:left;padding:6px;border-bottom:2px solid #333">Qty</th><th style="text-align:left;padding:6px;border-bottom:2px solid #333">Total</th></tr>'+itemsHtml+'</table>'+
+    '<p style="margin-top:12px"><strong>Subtotal:</strong> $'+subtotal.toFixed(2)+'</p>'+
+    '<p><strong>Shipping:</strong> '+(shipping===0?'FREE':'$'+shipping.toFixed(2))+'</p>'+
+    '<p><strong>Total:</strong> $'+(subtotal+shipping).toFixed(2)+'</p>'+
+    (notes?'<h3>Order Notes</h3><p>'+notes.replace(/\n/g,'<br>')+'</p>':'')+
+    '<p style="margin-top:16px;color:#999;font-size:12px">Submitted: '+new Date().toLocaleString()+'</p>';
+  // Send to admin Gmail
+  sendEmail('trucktireswarehouse@gmail.com','New Order Request from '+firstName+' '+lastName,adminBody);
+  // Send to admin webmail
+  sendEmail('info@doublecoins-heavyduty.com','New Order Request from '+firstName+' '+lastName,adminBody);
+  // Send confirmation to customer
+  sendEmail(email,'Order Confirmation - Double Coin Heavy Duty Truck Warehouse',
+    '<div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif">'+
+    '<div style="background:#1a1a1a;padding:24px;text-align:center"><h1 style="color:#fff;margin:0;font-size:22px">Double Coin Heavy Duty Truck Warehouse</h1></div>'+
+    '<div style="padding:28px;background:#fff">'+
+    '<h2 style="color:#1a1a1a;margin-top:0">Thank you for your order, '+firstName+'!</h2>'+
+    '<p style="color:#555;font-size:14px;line-height:1.7">We have received your order request and our team will contact you shortly to confirm the details and arrange payment.</p>'+
+    '<h3 style="color:#1a1a1a;border-bottom:1px solid #eee;padding-bottom:8px">Order Summary</h3>'+
+    '<table style="border-collapse:collapse;width:100%"><tr><th style="text-align:left;padding:8px;border-bottom:2px solid #333;font-size:13px">Item</th><th style="text-align:left;padding:8px;border-bottom:2px solid #333;font-size:13px">Qty</th><th style="text-align:left;padding:8px;border-bottom:2px solid #333;font-size:13px">Total</th></tr>'+itemsHtml+'</table>'+
+    '<p style="margin-top:14px;font-size:14px"><strong>Subtotal:</strong> $'+subtotal.toFixed(2)+'</p>'+
+    '<p style="font-size:14px"><strong>Shipping:</strong> '+(shipping===0?'FREE':'$'+shipping.toFixed(2))+'</p>'+
+    '<p style="font-size:16px;font-weight:700;color:#e60000"><strong>Total:</strong> $'+(subtotal+shipping).toFixed(2)+'</p>'+
+    '<h3 style="color:#1a1a1a;border-bottom:1px solid #eee;padding-bottom:8px">Shipping To</h3>'+
+    '<p style="font-size:14px;color:#555">'+firstName+' '+lastName+'<br>'+address1+(address2?', '+address2:'')+'<br>'+city+', '+state+' '+zip+'</p>'+
+    '<hr style="border:none;border-top:1px solid #eee;margin:24px 0">'+
+    '<p style="font-size:13px;color:#999">If you have any questions, contact us at <a href="tel:3104925660" style="color:#e60000">(310) 492-5660</a> or reply to this email.</p>'+
+    '</div>'+
+    '<div style="background:#f5f5f5;padding:16px;text-align:center;font-size:12px;color:#999">&copy; 2026 Double Coin Heavy Duty Truck Warehouse. All rights reserved.</div>'+
+    '</div>'
+  );
   cart=[];saveCart();
-  document.body.innerHTML=`<div style="display:flex;align-items:center;justify-content:center;min-height:80vh;text-align:center;font-family:'Poppins',sans-serif">
-    <div>
-      <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
-      <h1 style="font-size:28px;margin:20px 0 10px;color:#1a1a1a">Order Placed!</h1>
-      <p style="color:#666;font-size:15px;margin-bottom:28px">Thank you for your order. You'll receive a confirmation email shortly.</p>
-      <a href="index.html" style="background:#e60000;color:#fff;padding:13px 30px;border-radius:4px;font-weight:700;text-decoration:none;font-size:14px">Back to Home</a>
-    </div>
-  </div>`;
+  document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;min-height:80vh;text-align:center;font-family:Poppins,sans-serif"><div><svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg><h1 style="font-size:28px;margin:20px 0 10px;color:#1a1a1a">Order Request Submitted!</h1><p style="color:#666;font-size:15px;margin-bottom:28px">Thank you! Our team will contact you shortly to confirm your order and arrange payment.</p><a href="index.html" style="background:#e60000;color:#fff;padding:13px 30px;border-radius:4px;font-weight:700;text-decoration:none;font-size:14px">Back to Home</a></div></div>';
 }
 </script>
 </body>

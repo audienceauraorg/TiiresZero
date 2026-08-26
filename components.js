@@ -5,7 +5,7 @@
 const HEADER_HTML = `
 <div class="top-bar">
   <div class="container top-bar-inner">
-    <span>Free shipping on orders over $500! Call us: <a href="tel:8663358473">(866) 335-8473</a></span>
+    <span>Free shipping on orders over $500! Call us: <a href="tel:3104925660">(310) 492-5660</a></span>
     <div class="top-bar-links">
       <a href="order-tracking.html">Track Order</a>
       <a href="login.html" data-auth-login>Login</a>
@@ -72,8 +72,7 @@ const FOOTER_HTML = `
         </div>
         <p class="footer-desc">Save on the widest selection of major brand commercial truck tires online.</p>
         <div class="footer-contact">
-          <p>356 Peachtree St. NE<br>Pelham, GA 31779</p>
-          <p><a href="tel:8663358473">(866) 335-8473</a></p>
+          <p><a href="tel:3104925660">(310) 492-5660</a></p>
           <p><a href="mailto:info@doublecoins-heavyduty.com">info@doublecoins-heavyduty.com</a></p>
         </div>
         <div class="social-links">
@@ -99,7 +98,6 @@ const FOOTER_HTML = `
           <li><a href="brands.html">All Brands</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="financing.html">Financing</a></li>
-          <li><a href="shipping.html">Shipping &amp; Payment</a></li>
           <li><a href="returns.html">Return Policy</a></li>
           <li><a href="membership.html">Membership</a></li>
           <li><a href="order-tracking.html">Track Your Order</a></li>
