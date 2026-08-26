@@ -324,6 +324,7 @@ function signOut() {
 
 // --- Email via Titan SMTP (SmtpJS) ---
 function sendEmail(to, subject, body) {
+  if (typeof Email === 'undefined') { console.log('SmtpJS not loaded — email skipped'); return Promise.resolve('skipped'); }
   return Email.send({
     Host: 'smtp.titan.email',
     Username: 'info@doublecoins-heavyduty.com',

@@ -166,30 +166,29 @@ function placeOrder() {
     '<p><strong>Total:</strong> $'+(subtotal+shipping).toFixed(2)+'</p>'+
     (notes?'<h3>Order Notes</h3><p>'+notes.replace(/\n/g,'<br>')+'</p>':'')+
     '<p style="margin-top:16px;color:#999;font-size:12px">Submitted: '+new Date().toLocaleString()+'</p>';
-  // Send to admin Gmail
-  sendEmail('trucktireswarehouse@gmail.com','New Order Request from '+firstName+' '+lastName,adminBody);
-  // Send to admin webmail
-  sendEmail('info@doublecoins-heavyduty.com','New Order Request from '+firstName+' '+lastName,adminBody);
-  // Send confirmation to customer
-  sendEmail(email,'Order Confirmation - Double Coin Heavy Duty Truck Warehouse',
-    '<div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif">'+
-    '<div style="background:#1a1a1a;padding:24px;text-align:center"><h1 style="color:#fff;margin:0;font-size:22px">Double Coin Heavy Duty Truck Warehouse</h1></div>'+
-    '<div style="padding:28px;background:#fff">'+
-    '<h2 style="color:#1a1a1a;margin-top:0">Thank you for your order, '+firstName+'!</h2>'+
-    '<p style="color:#555;font-size:14px;line-height:1.7">We have received your order request and our team will contact you shortly to confirm the details and arrange payment.</p>'+
-    '<h3 style="color:#1a1a1a;border-bottom:1px solid #eee;padding-bottom:8px">Order Summary</h3>'+
-    '<table style="border-collapse:collapse;width:100%"><tr><th style="text-align:left;padding:8px;border-bottom:2px solid #333;font-size:13px">Item</th><th style="text-align:left;padding:8px;border-bottom:2px solid #333;font-size:13px">Qty</th><th style="text-align:left;padding:8px;border-bottom:2px solid #333;font-size:13px">Total</th></tr>'+itemsHtml+'</table>'+
-    '<p style="margin-top:14px;font-size:14px"><strong>Subtotal:</strong> $'+subtotal.toFixed(2)+'</p>'+
-    '<p style="font-size:14px"><strong>Shipping:</strong> '+(shipping===0?'FREE':'$'+shipping.toFixed(2))+'</p>'+
-    '<p style="font-size:16px;font-weight:700;color:#e60000"><strong>Total:</strong> $'+(subtotal+shipping).toFixed(2)+'</p>'+
-    '<h3 style="color:#1a1a1a;border-bottom:1px solid #eee;padding-bottom:8px">Shipping To</h3>'+
-    '<p style="font-size:14px;color:#555">'+firstName+' '+lastName+'<br>'+address1+(address2?', '+address2:'')+'<br>'+city+', '+state+' '+zip+'</p>'+
-    '<hr style="border:none;border-top:1px solid #eee;margin:24px 0">'+
-    '<p style="font-size:13px;color:#999">If you have any questions, contact us at <a href="tel:3104925660" style="color:#e60000">(310) 492-5660</a> or reply to this email.</p>'+
-    '</div>'+
-    '<div style="background:#f5f5f5;padding:16px;text-align:center;font-size:12px;color:#999">&copy; 2026 Double Coin Heavy Duty Truck Warehouse. All rights reserved.</div>'+
-    '</div>'
-  );
+  try {
+    sendEmail('trucktireswarehouse@gmail.com','New Order Request from '+firstName+' '+lastName,adminBody);
+    sendEmail('info@doublecoins-heavyduty.com','New Order Request from '+firstName+' '+lastName,adminBody);
+    sendEmail(email,'Order Confirmation - Double Coin Heavy Duty Truck Warehouse',
+      '<div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif">'+
+      '<div style="background:#1a1a1a;padding:24px;text-align:center"><h1 style="color:#fff;margin:0;font-size:22px">Double Coin Heavy Duty Truck Warehouse</h1></div>'+
+      '<div style="padding:28px;background:#fff">'+
+      '<h2 style="color:#1a1a1a;margin-top:0">Thank you for your order, '+firstName+'!</h2>'+
+      '<p style="color:#555;font-size:14px;line-height:1.7">We have received your order request and our team will contact you shortly to confirm the details and arrange payment.</p>'+
+      '<h3 style="color:#1a1a1a;border-bottom:1px solid #eee;padding-bottom:8px">Order Summary</h3>'+
+      '<table style="border-collapse:collapse;width:100%"><tr><th style="text-align:left;padding:8px;border-bottom:2px solid #333;font-size:13px">Item</th><th style="text-align:left;padding:8px;border-bottom:2px solid #333;font-size:13px">Qty</th><th style="text-align:left;padding:8px;border-bottom:2px solid #333;font-size:13px">Total</th></tr>'+itemsHtml+'</table>'+
+      '<p style="margin-top:14px;font-size:14px"><strong>Subtotal:</strong> $'+subtotal.toFixed(2)+'</p>'+
+      '<p style="font-size:14px"><strong>Shipping:</strong> '+(shipping===0?'FREE':'$'+shipping.toFixed(2))+'</p>'+
+      '<p style="font-size:16px;font-weight:700;color:#e60000"><strong>Total:</strong> $'+(subtotal+shipping).toFixed(2)+'</p>'+
+      '<h3 style="color:#1a1a1a;border-bottom:1px solid #eee;padding-bottom:8px">Shipping To</h3>'+
+      '<p style="font-size:14px;color:#555">'+firstName+' '+lastName+'<br>'+address1+(address2?', '+address2:'')+'<br>'+city+', '+state+' '+zip+'</p>'+
+      '<hr style="border:none;border-top:1px solid #eee;margin:24px 0">'+
+      '<p style="font-size:13px;color:#999">If you have any questions, contact us at <a href="tel:3104925660" style="color:#e60000">(310) 492-5660</a> or reply to this email.</p>'+
+      '</div>'+
+      '<div style="background:#f5f5f5;padding:16px;text-align:center;font-size:12px;color:#999">&copy; 2026 Double Coin Heavy Duty Truck Warehouse. All rights reserved.</div>'+
+      '</div>'
+    );
+  } catch(e) { console.log('Email send skipped:', e.message); }
   cart=[];saveCart();
   document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;min-height:80vh;text-align:center;font-family:Poppins,sans-serif"><div><svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg><h1 style="font-size:28px;margin:20px 0 10px;color:#1a1a1a">Order Request Submitted!</h1><p style="color:#666;font-size:15px;margin-bottom:28px">Thank you! Our team will contact you shortly to confirm your order and arrange payment.</p><a href="index.html" style="background:#e60000;color:#fff;padding:13px 30px;border-radius:4px;font-weight:700;text-decoration:none;font-size:14px">Back to Home</a></div></div>';
 }
