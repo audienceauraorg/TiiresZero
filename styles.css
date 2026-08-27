@@ -1265,12 +1265,6 @@ ul { list-style: none; }
 .floating-btn-whatsapp:hover {
   background: #1ebe57;
 }
-.floating-btn-sms {
-  background: #0b83c5;
-}
-.floating-btn-sms:hover {
-  background: #0970ab;
-}
 @media (max-width: 768px) {
   .floating-contact {
     bottom: 16px;

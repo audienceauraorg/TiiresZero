@@ -133,7 +133,7 @@ function initPage() {
   document.getElementById('osTotal').textContent='$'+(subtotal+shipping).toFixed(2);
 }
 
-async function placeOrder() {
+function placeOrder() {
   if(!cart.length){showToast('Your cart is empty.');return;}
   const inputs=document.querySelectorAll('.checkout-section input,.checkout-section select,.checkout-section textarea');
   const email=inputs[0]?.value.trim();
@@ -151,51 +151,25 @@ async function placeOrder() {
   const notes=document.querySelector('.checkout-section textarea')?.value.trim()||'';
   const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
   const shipping=subtotal>=500?0:49.99;
-  const itemsHtml=cart.map(i=>'<tr><td style="padding:6px;border-bottom:1px solid #eee">'+i.brand+' '+i.name+'</td><td style="padding:6px;border-bottom:1px solid #eee">'+i.qty+'</td><td style="padding:6px;border-bottom:1px solid #eee">$'+(i.price*i.qty).toFixed(2)+'</td></tr>').join('');
-  const adminBody='<h2>New Order Request</h2>'+
-    '<h3>Contact</h3>'+
-    '<p><strong>Name:</strong> '+firstName+' '+lastName+'</p>'+
-    '<p><strong>Email:</strong> '+email+'</p>'+
-    '<p><strong>Phone:</strong> '+(phone||'Not provided')+'</p>'+
-    (company?'<p><strong>Company:</strong> '+company+'</p>':'')+
-    '<h3>Shipping Address</h3>'+
-    '<p>'+address1+(address2?', '+address2:'')+'<br>'+city+', '+state+' '+zip+'</p>'+
-    '<h3>Items Ordered</h3>'+
-    '<table style="border-collapse:collapse;width:100%"><tr><th style="text-align:left;padding:6px;border-bottom:2px solid #333">Item</th><th style="text-align:left;padding:6px;border-bottom:2px solid #333">Qty</th><th style="text-align:left;padding:6px;border-bottom:2px solid #333">Total</th></tr>'+itemsHtml+'</table>'+
-    '<p style="margin-top:12px"><strong>Subtotal:</strong> $'+subtotal.toFixed(2)+'</p>'+
-    '<p><strong>Shipping:</strong> '+(shipping===0?'FREE':'$'+shipping.toFixed(2))+'</p>'+
-    '<p><strong>Total:</strong> $'+(subtotal+shipping).toFixed(2)+'</p>'+
-    (notes?'<h3>Order Notes</h3><p>'+notes.replace(/\n/g,'<br>')+'</p>':'')+
-    '<p style="margin-top:16px;color:#999;font-size:12px">Submitted: '+new Date().toLocaleString()+'</p>';
-  const customerBody='<div style="max-width:600px;margin:0 auto;font-family:Arial,sans-serif">'+
-    '<div style="background:#1a1a1a;padding:24px;text-align:center"><h1 style="color:#fff;margin:0;font-size:22px">Double Coin Heavy Duty Truck Warehouse</h1></div>'+
-    '<div style="padding:28px;background:#fff">'+
-    '<h2 style="color:#1a1a1a;margin-top:0">Thank you for your order, '+firstName+'!</h2>'+
-    '<p style="color:#555;font-size:14px;line-height:1.7">We have received your order request and our team will contact you shortly to confirm the details and arrange payment.</p>'+
-    '<h3 style="color:#1a1a1a;border-bottom:1px solid #eee;padding-bottom:8px">Order Summary</h3>'+
-    '<table style="border-collapse:collapse;width:100%"><tr><th style="text-align:left;padding:8px;border-bottom:2px solid #333;font-size:13px">Item</th><th style="text-align:left;padding:8px;border-bottom:2px solid #333;font-size:13px">Qty</th><th style="text-align:left;padding:8px;border-bottom:2px solid #333;font-size:13px">Total</th></tr>'+itemsHtml+'</table>'+
-    '<p style="margin-top:14px;font-size:14px"><strong>Subtotal:</strong> $'+subtotal.toFixed(2)+'</p>'+
-    '<p style="font-size:14px"><strong>Shipping:</strong> '+(shipping===0?'FREE':'$'+shipping.toFixed(2))+'</p>'+
-    '<p style="font-size:16px;font-weight:700;color:#e60000"><strong>Total:</strong> $'+(subtotal+shipping).toFixed(2)+'</p>'+
-    '<h3 style="color:#1a1a1a;border-bottom:1px solid #eee;padding-bottom:8px">Shipping To</h3>'+
-    '<p style="font-size:14px;color:#555">'+firstName+' '+lastName+'<br>'+address1+(address2?', '+address2:'')+'<br>'+city+', '+state+' '+zip+'</p>'+
-    '<hr style="border:none;border-top:1px solid #eee;margin:24px 0">'+
-    '<p style="font-size:13px;color:#999">If you have any questions, contact us at <a href="tel:3104925660" style="color:#e60000">(310) 492-5660</a> or reply to this email.</p>'+
-    '</div>'+
-    '<div style="background:#f5f5f5;padding:16px;text-align:center;font-size:12px;color:#999">&copy; 2026 Double Coin Heavy Duty Truck Warehouse. All rights reserved.</div>'+
-    '</div>';
-  // Disable button and show sending state
-  const btn=document.querySelector('.btn-place-order');
-  if(btn){btn.disabled=true;btn.textContent='Submitting Order...';}
-  try {
-    await Promise.all([
-      sendEmail('trucktireswarehouse@gmail.com','New Order Request from '+firstName+' '+lastName,adminBody),
-      sendEmail('info@doublecoins-heavyduty.com','New Order Request from '+firstName+' '+lastName,adminBody),
-      sendEmail(email,'Order Confirmation - Double Coin Heavy Duty Truck Warehouse',customerBody)
-    ]);
-  } catch(e) { console.log('Email send error:', e.message); }
+  const itemsList=cart.map(i=>i.brand+' '+i.name+' x'+i.qty+' = $'+(i.price*i.qty).toFixed(2)).join('\n');
+  var waText='*New Order Request*\n\n'+
+    '*Contact:*\n'+
+    'Name: '+firstName+' '+lastName+'\n'+
+    'Email: '+email+'\n'+
+    'Phone: '+(phone||'Not provided')+'\n'+
+    (company?'Company: '+company+'\n':'')+
+    '\n*Shipping Address:*\n'+
+    address1+(address2?', '+address2:'')+'\n'+
+    city+', '+state+' '+zip+'\n'+
+    '\n*Items Ordered:*\n'+itemsList+'\n'+
+    '\nSubtotal: $'+subtotal.toFixed(2)+'\n'+
+    'Shipping: '+(shipping===0?'FREE':'$'+shipping.toFixed(2))+'\n'+
+    '*Total: $'+(subtotal+shipping).toFixed(2)+'*\n'+
+    (notes?'\n*Order Notes:*\n'+notes+'\n':'')+
+    '\nSubmitted: '+new Date().toLocaleString();
+  window.open('https://wa.me/12368799173?text='+encodeURIComponent(waText),'_blank');
   cart=[];saveCart();
-  document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;min-height:80vh;text-align:center;font-family:Poppins,sans-serif"><div><svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg><h1 style="font-size:28px;margin:20px 0 10px;color:#1a1a1a">Order Request Submitted!</h1><p style="color:#666;font-size:15px;margin-bottom:28px">Thank you! Our team will contact you shortly to confirm your order and arrange payment.</p><a href="index.html" style="background:#e60000;color:#fff;padding:13px 30px;border-radius:4px;font-weight:700;text-decoration:none;font-size:14px">Back to Home</a></div></div>';
+  document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;min-height:80vh;text-align:center;font-family:Poppins,sans-serif"><div><svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg><h1 style="font-size:28px;margin:20px 0 10px;color:#1a1a1a">Order Request Submitted!</h1><p style="color:#666;font-size:15px;margin-bottom:28px">Thank you! Your order has been sent via WhatsApp. Our team will confirm your order and arrange payment.</p><a href="index.html" style="background:#e60000;color:#fff;padding:13px 30px;border-radius:4px;font-weight:700;text-decoration:none;font-size:14px">Back to Home</a></div></div>';
 }
 </script>
 </body>

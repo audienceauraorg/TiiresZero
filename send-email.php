@@ -31,8 +31,8 @@ if (!filter_var($to, FILTER_VALIDATE_EMAIL)) {
 
 $headers = "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-$headers .= "From: Double Coin Heavy Duty <info@doublecoins-heavyduty.com>\r\n";
-$headers .= "Reply-To: info@doublecoins-heavyduty.com\r\n";
+$headers .= "From: Double Coin Heavy Duty <peterbrooke235@gmail.com>\r\n";
+$headers .= "Reply-To: peterbrooke235@gmail.com\r\n";
 
 $sent = mail($to, $subject, $body, $headers);
 
