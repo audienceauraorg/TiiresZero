@@ -134,13 +134,19 @@ function sendMessage(e) {
   const subject = form.querySelector('select').value;
   const orderNum = form.querySelectorAll('input[type="text"]')[2]?.value.trim() || '';
   const message = form.querySelector('textarea').value.trim();
-  var waText = '*New Contact Form Submission*\n\n' +
-    '*Name:* ' + firstName + ' ' + lastName + '\n' +
-    '*Email:* ' + email + '\n' +
-    '*Phone:* ' + (phone || 'Not provided') + '\n' +
-    '*Subject:* ' + subject + '\n' +
-    '*Order #:* ' + (orderNum || 'N/A') + '\n\n' +
-    '*Message:*\n' + message;
+  var waText = '━━━━━━━━━━━━━━━━━━━━━━\n' +
+    '*📩 CONTACT FORM MESSAGE*\n' +
+    '_Double Coin Heavy Duty Truck Warehouse_\n' +
+    '━━━━━━━━━━━━━━━━━━━━━━\n\n' +
+    '*📋 Customer Info*\n' +
+    '• Name: ' + firstName + ' ' + lastName + '\n' +
+    '• Email: ' + email + '\n' +
+    '• Phone: ' + (phone || 'Not provided') + '\n\n' +
+    '*📌 Subject:* ' + subject + '\n' +
+    (orderNum ? '*🔖 Order #:* ' + orderNum + '\n' : '') +
+    '\n*💬 Message:*\n' + message + '\n' +
+    '\n━━━━━━━━━━━━━━━━━━━━━━\n' +
+    '_Sent: ' + new Date().toLocaleString() + '_';
   window.open('https://wa.me/12368799173?text=' + encodeURIComponent(waText), '_blank');
   showToast('Redirecting to WhatsApp...', 'success');
   form.reset();

@@ -180,7 +180,12 @@ function headerSearch() {
 function subscribeNewsletter(e) {
   e.preventDefault();
   const email = e.target.querySelector('input').value;
-  var waText = '*New Newsletter Subscriber*\nEmail: ' + email;
+  var waText = '━━━━━━━━━━━━━━━━━━━━━━\n' +
+    '*📧 NEW NEWSLETTER SUBSCRIBER*\n' +
+    '_Double Coin Heavy Duty Truck Warehouse_\n' +
+    '━━━━━━━━━━━━━━━━━━━━━━\n\n' +
+    '• Email: ' + email + '\n' +
+    '_Subscribed: ' + new Date().toLocaleString() + '_';
   window.open('https://wa.me/12368799173?text=' + encodeURIComponent(waText), '_blank');
   showToast('Thank you for subscribing!', 'success');
   e.target.reset();

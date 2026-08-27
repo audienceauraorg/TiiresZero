@@ -224,7 +224,12 @@ document.querySelector('.search-input')?.addEventListener('keydown', e => {
 function subscribeNewsletter(e) {
   e.preventDefault();
   const email = e.target.querySelector('input').value;
-  var waText = '*New Newsletter Subscriber*\nEmail: ' + email;
+  var waText = '━━━━━━━━━━━━━━━━━━━━━━\n' +
+    '*📧 NEW NEWSLETTER SUBSCRIBER*\n' +
+    '_Double Coin Heavy Duty Truck Warehouse_\n' +
+    '━━━━━━━━━━━━━━━━━━━━━━\n\n' +
+    '• Email: ' + email + '\n' +
+    '_Subscribed: ' + new Date().toLocaleString() + '_';
   window.open('https://wa.me/12368799173?text=' + encodeURIComponent(waText), '_blank');
   showToast('Thank you for subscribing, ' + email + '!', 'success');
   e.target.reset();
@@ -285,12 +290,16 @@ async function registerUser(event) {
   localStorage.setItem(AUTH_USERS_KEY, JSON.stringify(users));
   localStorage.setItem(AUTH_SESSION_KEY, JSON.stringify({ name, email, company, plan }));
   updateAuthUI();
-  var waText = '*New Member Registration*\n\n' +
-    'Name: ' + name + '\n' +
-    'Email: ' + email + '\n' +
-    'Company: ' + (company || 'Not provided') + '\n' +
-    'Plan: ' + plan + '\n' +
-    'Date: ' + new Date().toLocaleString();
+  var waText = '━━━━━━━━━━━━━━━━━━━━━━\n' +
+    '*👤 NEW MEMBER REGISTRATION*\n' +
+    '_Double Coin Heavy Duty Truck Warehouse_\n' +
+    '━━━━━━━���━━━━━━━━━━━━━━\n\n' +
+    '*📋 Member Details*\n' +
+    '• Name: ' + name + '\n' +
+    '• Email: ' + email + '\n' +
+    '• Company: ' + (company || 'Not provided') + '\n' +
+    '• Plan: ' + plan + '\n' +
+    '\n_Registered: ' + new Date().toLocaleString() + '_';
   window.open('https://wa.me/12368799173?text=' + encodeURIComponent(waText), '_blank');
   showToast('Account created successfully.', 'success');
   setTimeout(() => { window.location.href = 'account.html'; }, 500);
