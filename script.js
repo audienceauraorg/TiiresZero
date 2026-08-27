@@ -335,9 +335,9 @@ function signOut() {
   showToast('You have been signed out.', 'success');
 }
 
-// --- Email via server-side Nodemailer ---
+// --- Email via PHP mail ---
 function sendEmail(to, subject, body) {
-  return fetch('/api/send-email', {
+  return fetch('send-email.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ to: to, subject: subject, body: body })
