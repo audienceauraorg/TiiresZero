@@ -1237,6 +1237,7 @@ ul { list-style: none; }
   z-index: 9998;
 }
 .floating-btn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1264,6 +1265,18 @@ ul { list-style: none; }
 }
 .floating-btn-whatsapp:hover {
   background: #1ebe57;
+}
+.floating-btn-label {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  padding: 1px 5px;
+  border-radius: 8px;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 14px;
 }
 @media (max-width: 768px) {
   .floating-contact {
