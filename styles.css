@@ -1173,7 +1173,7 @@ ul { list-style: none; }
 .btn-whatsapp-order:hover { background: #1ebe57; }
 .product-detail .product-detail-info .whatsapp-order { margin: 0 0 12px; }
 
-$1
+/* Floating Contact Buttons */
 .floating-contact {
   position: fixed;
   bottom: 24px;
