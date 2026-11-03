@@ -78,8 +78,8 @@
           <h2><span class="step-num">2</span>Shipping Address</h2>
           <div class="form-row single"><div class="form-group"><label>Address Line 1</label><input type="text" placeholder="123 Main Street"/></div></div>
           <div class="form-row single"><div class="form-group"><label>Address Line 2 (optional)</label><input type="text" placeholder="Apt, Suite, Unit, etc."/></div></div>
-          <div class="form-row"><div class="form-group"><label>City</label><input type="text" placeholder="City"/></div><div class="form-group"><label>State</label><select><option value="">Select State</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div></div>
-          <div class="form-row"><div class="form-group"><label>ZIP Code</label><input type="text" placeholder="00000"/></div><div class="form-group"><label>Country</label><select><option>United States</option></select></div></div>
+          <div class="form-row"><div class="form-group"><label>City</label><input type="text" placeholder="City"/></div><div class="form-group" id="stateGroup"><label>State</label><select id="stateSelect"><option value="">Select State</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div></div>
+          <div class="form-row"><div class="form-group"><label>ZIP / Postal Code</label><input type="text" placeholder="00000"/></div><div class="form-group"><label>Country</label><select id="countrySelect" onchange="syncCountry()"><option>United States</option><option>Germany</option></select></div></div>
         </div>
 
         <!-- Additional Info -->
@@ -97,8 +97,10 @@
         <div class="os-row"><span>Subtotal</span><span id="osSubtotal">$0.00</span></div>
         <div class="os-row"><span>Shipping</span><span id="osShipping">—</span></div>
         <div class="os-row total"><span>Total</span><span id="osTotal">$0.00</span></div>
-        <button class="btn-place-order" onclick="placeOrder()">Submit Order Request</button>
+        <button class="btn-place-order" onclick="placeOrder('en')">Submit Order on WhatsApp</button>
+        <button class="btn-place-order" lang="de" onclick="placeOrder('de')">Bestellung per WhatsApp senden</button>
         <p style="text-align:center;font-size:12px;color:#999;margin-top:12px">Our team will contact you to confirm your order and arrange payment.</p>
+        <p lang="de" style="text-align:center;font-size:12px;color:#999;margin-top:12px">Unser Team meldet sich bei Ihnen, um die Bestellung zu bestätigen und die Zahlung zu vereinbaren.</p>
       </div>
     </div>
   </div>
@@ -133,48 +135,107 @@ function initPage() {
   document.getElementById('osTotal').textContent='$'+(subtotal+shipping).toFixed(2);
 }
 
-function placeOrder() {
-  if(!cart.length){showToast('Your cart is empty.');return;}
+function syncCountry() {
+  document.getElementById('stateGroup').style.display = document.getElementById('countrySelect').value === 'Germany' ? 'none' : '';
+}
+
+const ORDER_TEXT = {
+  en: {
+    emptyCart: 'Your cart is empty.',
+    missingContact: 'Please fill in your contact information.',
+    missingAddress: 'Please fill in your shipping address.',
+    title: 'NEW ORDER REQUEST',
+    customer: 'Customer Details',
+    name: 'Name',
+    phone: 'Phone',
+    notProvided: 'Not provided',
+    company: 'Company',
+    address: 'Shipping Address',
+    items: 'Items Ordered',
+    qty: 'Qty',
+    subtotal: 'Subtotal',
+    shipping: 'Shipping',
+    free: 'FREE',
+    total: 'TOTAL',
+    notes: 'Order Notes',
+    submitted: 'Submitted',
+    locale: undefined,
+    doneTitle: 'Order Request Submitted!',
+    doneBody: 'Thank you! Your order has been sent via WhatsApp. Our team will confirm your order and arrange payment.',
+    home: 'Back to Home',
+  },
+  de: {
+    emptyCart: 'Ihr Warenkorb ist leer.',
+    missingContact: 'Bitte geben Sie Ihre Kontaktdaten ein.',
+    missingAddress: 'Bitte geben Sie Ihre Lieferadresse ein.',
+    title: 'NEUE BESTELLANFRAGE',
+    customer: 'Kundendaten',
+    name: 'Name',
+    phone: 'Telefon',
+    notProvided: 'Nicht angegeben',
+    company: 'Firma',
+    address: 'Lieferadresse',
+    items: 'Bestellte Artikel',
+    qty: 'Menge',
+    subtotal: 'Zwischensumme',
+    shipping: 'Versand',
+    free: 'KOSTENLOS',
+    total: 'GESAMT',
+    notes: 'Anmerkungen',
+    submitted: 'Gesendet',
+    locale: 'de-DE',
+    doneTitle: 'Bestellanfrage gesendet!',
+    doneBody: 'Vielen Dank! Ihre Bestellung wurde per WhatsApp gesendet. Unser Team bestätigt Ihre Bestellung und vereinbart die Zahlung mit Ihnen.',
+    home: 'Zur Startseite',
+  },
+};
+
+function placeOrder(lang) {
+  const t=ORDER_TEXT[lang];
+  if(!cart.length){showToast(t.emptyCart);return;}
+  if(lang==='de'){document.getElementById('countrySelect').value='Germany';syncCountry();}
   const inputs=document.querySelectorAll('.checkout-section input,.checkout-section select,.checkout-section textarea');
   const email=inputs[0]?.value.trim();
   const firstName=inputs[1]?.value.trim();
   const lastName=inputs[2]?.value.trim();
   const phone=inputs[3]?.value.trim();
-  if(!email||!firstName||!lastName){showToast('Please fill in your contact information.');return;}
+  if(!email||!firstName||!lastName){showToast(t.missingContact);return;}
   const address1=inputs[4]?.value.trim();
   const address2=inputs[5]?.value.trim();
   const city=inputs[6]?.value.trim();
   const state=inputs[7]?.value;
   const zip=inputs[8]?.value.trim();
-  if(!address1||!city||!state||!zip){showToast('Please fill in your shipping address.');return;}
+  const inGermany=inputs[9]?.value==='Germany';
+  if(!address1||!city||!zip||(!inGermany&&!state)){showToast(t.missingAddress);return;}
   const company=inputs[10]?.value.trim()||'';
   const notes=document.querySelector('.checkout-section textarea')?.value.trim()||'';
   const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
   const shipping=subtotal>=500?0:49.99;
-  const itemsList=cart.map(function(i,idx){return '  '+(idx+1)+'. '+i.brand+' '+i.name+'\n     Qty: '+i.qty+' | $'+(i.price*i.qty).toFixed(2);}).join('\n');
+  const itemsList=cart.map(function(i,idx){return '  '+(idx+1)+'. '+i.brand+' '+i.name+'\n     '+t.qty+': '+i.qty+' | $'+(i.price*i.qty).toFixed(2);}).join('\n');
+  const place=inGermany?zip+' '+city+'\n'+(lang==='de'?'Deutschland':'Germany'):city+', '+state+' '+zip;
   var waText='━━━━━━━━━━━━━━━━━━━━━━\n'+
-    '*🛒 NEW ORDER REQUEST*\n'+
+    '*🛒 '+t.title+'*\n'+
     '_Double Coin Heavy Duty Truck Warehouse_\n'+
     '━━━━━━━━━━━━━━━━━━━━━━\n\n'+
-    '*📋 Customer Details*\n'+
-    '• Name: '+firstName+' '+lastName+'\n'+
+    '*📋 '+t.customer+'*\n'+
+    '• '+t.name+': '+firstName+' '+lastName+'\n'+
     '• Email: '+email+'\n'+
-    '• Phone: '+(phone||'Not provided')+'\n'+
-    (company?'• Company: '+company+'\n':'')+
-    '\n*📦 Shipping Address*\n'+
+    '• '+t.phone+': '+(phone||t.notProvided)+'\n'+
+    (company?'• '+t.company+': '+company+'\n':'')+
+    '\n*📦 '+t.address+'*\n'+
     address1+(address2?', '+address2:'')+'\n'+
-    city+', '+state+' '+zip+'\n'+
-    '\n*🔧 Items Ordered*\n'+itemsList+'\n'+
-    '\n━━━━━━━━━━━━━━━━━━��━━━\n'+
-    '  Subtotal: $'+subtotal.toFixed(2)+'\n'+
-    '  Shipping: '+(shipping===0?'FREE':'$'+shipping.toFixed(2))+'\n'+
-    '  *TOTAL: $'+(subtotal+shipping).toFixed(2)+'*\n'+
+    place+'\n'+
+    '\n*🔧 '+t.items+'*\n'+itemsList+'\n'+
+    '\n━━━━━━━━━━━━━━━━━━━━━━\n'+
+    '  '+t.subtotal+': $'+subtotal.toFixed(2)+'\n'+
+    '  '+t.shipping+': '+(shipping===0?t.free:'$'+shipping.toFixed(2))+'\n'+
+    '  *'+t.total+': $'+(subtotal+shipping).toFixed(2)+'*\n'+
     '━━━━━━━━━━━━━━━━━━━━━━\n'+
-    (notes?'\n*📝 Order Notes*\n'+notes+'\n':'')+
-    '\n_Submitted: '+new Date().toLocaleString()+'_';
-  window.open('https://wa.me/19842814824?text='+encodeURIComponent(waText),'_blank');
+    (notes?'\n*📝 '+t.notes+'*\n'+notes+'\n':'')+
+    '\n_'+t.submitted+': '+new Date().toLocaleString(t.locale)+'_';
+  openWhatsAppOrder(lang,waText);
   cart=[];saveCart();
-  document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;min-height:80vh;text-align:center;font-family:Poppins,sans-serif"><div><svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg><h1 style="font-size:28px;margin:20px 0 10px;color:#1a1a1a">Order Request Submitted!</h1><p style="color:#666;font-size:15px;margin-bottom:28px">Thank you! Your order has been sent via WhatsApp. Our team will confirm your order and arrange payment.</p><a href="index.html" style="background:#e60000;color:#fff;padding:13px 30px;border-radius:4px;font-weight:700;text-decoration:none;font-size:14px">Back to Home</a></div></div>';
+  document.body.innerHTML='<div style="display:flex;align-items:center;justify-content:center;min-height:80vh;text-align:center;font-family:Poppins,sans-serif"><div><svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg><h1 style="font-size:28px;margin:20px 0 10px;color:#1a1a1a">'+t.doneTitle+'</h1><p style="color:#666;font-size:15px;margin-bottom:28px">'+t.doneBody+'</p><a href="index.html" style="background:#e60000;color:#fff;padding:13px 30px;border-radius:4px;font-weight:700;text-decoration:none;font-size:14px">'+t.home+'</a></div></div>';
 }
 </script>
 </body>

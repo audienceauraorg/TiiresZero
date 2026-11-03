@@ -629,22 +629,7 @@ ul { list-style: none; }
   color: var(--dark);
   font: 600 12px var(--font);
 }
-.btn-delivery {
-  flex: 1;
-  min-width: 0;
-  border: none;
-  border-radius: 5px;
-  padding: 9px 10px;
-  background: #0b83c5;
-  color: #fff;
-  font: 600 12px var(--font);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background .2s;
-}
-.btn-delivery:hover { background: #076b9f; }
 .delivery-cart-icon { margin-right: 3px; font-size: 14px; }
-.detail-delivery { width: 100%; margin: -4px 0 12px; padding: 12px; font-size: 13px; }
 .product-add-button { width: auto; flex: 1; margin-top: 0; padding: 9px 10px; font-size: 12px; }
 .btn-add-cart {
   margin-top: 12px;
@@ -1143,11 +1128,8 @@ ul { list-style: none; }
   /* Cart sidebar full width */
   .cart-sidebar { width: 100%; }
 
-  /* Delivery modal */
-  .delivery-modal { width: 95%; min-width: 0; }
-
   /* Touch targets */
-  button, .btn-add-cart, .btn-delivery, .btn-outline, a.nav-link {
+  button, .btn-add-cart, .btn-outline, a.nav-link {
     min-height: 44px;
   }
   .carousel-arrow, .carousel-dot, .qty-ctrl button {
@@ -1170,65 +1152,28 @@ ul { list-style: none; }
   .selector-tab { padding: 8px 10px; font-size: 11px; }
 }
 
-/* Delivery availability dialog */
-.delivery-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  display: flex;
+/* WhatsApp order buttons */
+.whatsapp-order { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; margin-top: 6px; }
+.btn-whatsapp-order {
+  flex: 1 1 150px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  background: rgba(0,0,0,.55);
-  z-index: 10000;
-}
-.delivery-modal {
-  width: min(440px, 100%);
-  padding: 24px;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 12px 40px rgba(0,0,0,.25);
-}
-.delivery-modal h3 { margin: 0 0 6px; font-size: 19px; }
-.delivery-modal p { margin: 0 0 16px; color: #666; font-size: 13px; line-height: 1.5; }
-.delivery-modal-form { display: flex; gap: 8px; }
-.delivery-modal-form input {
-  flex: 1;
-  min-width: 0;
-  padding: 11px 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font: 14px var(--font);
-}
-.delivery-modal-form button {
-  padding: 11px 14px;
+  gap: 6px;
+  min-height: 36px;
+  padding: 8px 10px;
   border: none;
-  border-radius: 4px;
-  background: #0b83c5;
-  color: #fff;
-  font: 600 13px var(--font);
-  cursor: pointer;
-}
-.delivery-result {
-  display: none;
-  margin-top: 16px;
-  padding: 12px;
   border-radius: 5px;
-  background: #edf9f0;
-  color: #176b2b;
-  font-size: 13px;
-  line-height: 1.55;
-}
-.delivery-modal-close {
-  float: right;
-  border: none;
-  background: transparent;
-  color: #777;
-  font-size: 22px;
-  line-height: 1;
+  background: #25D366;
+  color: #fff;
+  font: 700 12px var(--font);
   cursor: pointer;
+  transition: background .2s;
 }
+.btn-whatsapp-order:hover { background: #1ebe57; }
+.product-detail .product-detail-info .whatsapp-order { margin: 0 0 12px; }
 
-/* Floating Contact Buttons */
+$1
 .floating-contact {
   position: fixed;
   bottom: 24px;
@@ -1346,8 +1291,6 @@ ul { list-style: none; }
   .cart-item-img img { width: 46px; height: 46px; }
   .cart-item-name { font-size: 11px; }
   .cart-item-total { font-size: 12px; }
-  .delivery-modal-form { flex-direction: column; }
-  .delivery-modal-form button { width: 100%; }
   .table-wrap, .cart-table-wrap { max-width: 100%; overflow-x: auto; }
   .floating-contact { right: 8px; bottom: 10px; gap: 5px; }
   .floating-btn { width: 40px; height: 40px; }

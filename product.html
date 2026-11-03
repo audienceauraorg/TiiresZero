@@ -74,7 +74,7 @@
     @media(max-width:768px){
       .product-page-section{padding:20px 0 36px!important;}
       .breadcrumb{font-size:12px;margin-bottom:14px;}
-      .product-detail{grid-template-columns:1fr;gap:16px;}
+      .product-detail{grid-template-columns:minmax(0,1fr);gap:16px;}
       .product-images{position:static;}
       .carousel-wrapper{border-radius:6px;}
       .carousel-slide{padding:16px;min-height:180px;}
@@ -287,6 +287,7 @@ function renderProduct() {
 
     <button class="btn-cart-large" onclick="addToCartDetail()"><span class="delivery-cart-icon" aria-hidden="true">🛒</span> ADD TO CART</button>
     <button class="btn-buy-now" onclick="buyNow()">BUY NOW</button>
+    ${whatsAppOrderButtonsHTML(p.id)}
 
     <table class="product-meta-table">
       <tr><td>Brand</td><td>${p.brand}</td></tr>
@@ -349,7 +350,7 @@ function changeQty(d) {
 
 function addToCartDetail() {
   const p = currentProduct;
-  addToCartWithDelivery(p.id, document.querySelector('.btn-cart-large'));
+  addProductToCart(p.id, document.querySelector('.btn-cart-large'));
 }
 
 function buyNow() {

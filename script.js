@@ -79,12 +79,15 @@ function addToCart(brand, name, price) {
   showToast(`Added to cart: ${brand} ${name}`, 'success');
 }
 
+function selectedQuantity(trigger) {
+  const scope = trigger?.closest('.product-card, .product-detail');
+  return Math.max(1, parseInt(scope?.querySelector('.product-qty, #qtyInput')?.value, 10) || 1);
+}
+
 function addProductToCart(productId, button) {
   const product = (window.PRODUCTS || PRODUCTS).find(p => String(p.id) === String(productId));
   if (!product) return showToast('This product is no longer available.');
-  const card = button?.closest('.product-card');
-  const qty = Math.max(1, parseInt(card?.querySelector('.product-qty')?.value, 10) || 1);
-  addProductToCartByQuantity(product, qty);
+  addProductToCartByQuantity(product, selectedQuantity(button));
 }
 
 function addProductToCartByQuantity(product, qty) {
@@ -97,65 +100,46 @@ function addProductToCartByQuantity(product, qty) {
   showToast(`Added ${qty} ${qty === 1 ? 'tire' : 'tires'} to cart`, 'success');
 }
 
-function addToCartWithDelivery(productId, trigger) {
+// --- WhatsApp orders ---
+// English orders go to the US number, German orders to the German number.
+const WHATSAPP_ORDER = {
+  en: {
+    number: '19842814824',
+    greeting: 'Hello, I would like to order:',
+    quantity: 'Quantity',
+    unitPrice: 'Price per tire',
+    subtotal: 'Subtotal',
+    product: 'Product',
+    closing: 'Please confirm availability, shipping and payment.',
+  },
+  de: {
+    number: '4917613564657',
+    greeting: 'Hallo, ich möchte Folgendes bestellen:',
+    quantity: 'Menge',
+    unitPrice: 'Preis pro Reifen',
+    subtotal: 'Zwischensumme',
+    product: 'Produkt',
+    closing: 'Bitte bestätigen Sie Verfügbarkeit, Versand und Zahlung.',
+  },
+};
+
+function openWhatsAppOrder(lang, text) {
+  window.open(`https://wa.me/${WHATSAPP_ORDER[lang].number}?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function orderProductOnWhatsApp(productId, lang, trigger) {
   const product = (window.PRODUCTS || PRODUCTS).find(p => String(p.id) === String(productId));
-  if (!product) return showToast('This product is no longer available.');
-  const scope = trigger?.closest('.product-card, .product-detail');
-  const qty = Math.max(1, parseInt(scope?.querySelector('.product-qty, #qtyInput')?.value, 10) || 1);
-  const savedZip = localStorage.getItem('tet_delivery_zip');
-  if (savedZip) return addProductToCartByQuantity(product, qty);
-  openDeliveryModal(product, qty, true);
-}
-
-function checkDeliveryOptions(productId, trigger) {
-  const product = (window.PRODUCTS || PRODUCTS).find(p => String(p.id) === String(productId));
-  if (!product) return showToast('This product is no longer available.');
-  const scope = trigger?.closest('.product-card, .product-detail');
-  const qty = Math.max(1, parseInt(scope?.querySelector('.product-qty, #qtyInput')?.value, 10) || 1);
-  openDeliveryModal(product, qty, false);
-}
-
-function openDeliveryModal(product, qty, addAfterCheck) {
-  document.querySelector('.delivery-modal-backdrop')?.remove();
-  const backdrop = document.createElement('div');
-  backdrop.className = 'delivery-modal-backdrop';
-  backdrop.dataset.productId = product.id;
-  backdrop.dataset.qty = qty;
-  backdrop.dataset.addAfter = addAfterCheck ? 'true' : 'false';
-  backdrop.innerHTML = `<section class="delivery-modal" role="dialog" aria-modal="true" aria-labelledby="deliveryModalTitle">
-    <button type="button" class="delivery-modal-close" aria-label="Close" onclick="this.closest('.delivery-modal-backdrop').remove()">×</button>
-    <h3 id="deliveryModalTitle">Check delivery options</h3>
-    <p>${product.brand} ${product.name} ${product.size} · ${qty} ${qty === 1 ? 'tire' : 'tires'}</p>
-    <form class="delivery-modal-form" onsubmit="return confirmDeliveryAvailability(event)">
-      <input name="zip" inputmode="numeric" autocomplete="postal-code" placeholder="Enter any ZIP code" aria-label="ZIP code" />
-      <button type="submit">Check</button>
-    </form>
-    <div class="delivery-result" id="deliveryResult"></div>
-  </section>`;
-  backdrop.addEventListener('click', event => { if (event.target === backdrop) backdrop.remove(); });
-  document.body.appendChild(backdrop);
-  backdrop.querySelector('input')?.focus();
-}
-
-function confirmDeliveryAvailability(event) {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const zip = form.querySelector('input[name="zip"]')?.value.trim() || 'your ZIP code';
-  const result = form.parentElement.querySelector('#deliveryResult');
-  localStorage.setItem('tet_delivery_zip', zip);
-  result.innerHTML = `<strong>Delivery available</strong><br>We deliver to ${zip}. Standard delivery: 3–7 business days. Expedited options are available at checkout.`;
-  result.style.display = 'block';
-  const backdrop = form.closest('.delivery-modal-backdrop');
-  if (backdrop?.dataset.addAfter === 'true') {
-    const product = (window.PRODUCTS || PRODUCTS).find(p => String(p.id) === String(backdrop.dataset.productId));
-    if (product) {
-      setTimeout(() => {
-        backdrop.remove();
-        addProductToCartByQuantity(product, Math.max(1, parseInt(backdrop.dataset.qty, 10) || 1));
-      }, 350);
-    }
-  }
-  return false;
+  if (!product) return showToast(lang === 'de' ? 'Dieses Produkt ist nicht mehr verfügbar.' : 'This product is no longer available.');
+  const qty = selectedQuantity(trigger);
+  const t = WHATSAPP_ORDER[lang];
+  const url = new URL(`product.html?id=${product.id}`, window.location.href).href;
+  openWhatsAppOrder(lang, `${t.greeting}\n\n` +
+    `*${product.brand} ${product.name} ${product.size}*\n` +
+    `• ${t.quantity}: ${qty}\n` +
+    `• ${t.unitPrice}: $${product.price.toFixed(2)}\n` +
+    `• ${t.subtotal}: $${(product.price * qty).toFixed(2)}\n` +
+    `• ${t.product}: ${url}\n\n` +
+    t.closing);
 }
 
 function removeFromCart(idx) {
@@ -293,7 +277,7 @@ async function registerUser(event) {
   var waText = '━━━━━━━━━━━━━━━━━━━━━━\n' +
     '*👤 NEW MEMBER REGISTRATION*\n' +
     '_Double Coin Heavy Duty Truck Warehouse_\n' +
-    '━━━━━━━���━━━━━━━━━━━━━━\n\n' +
+    '━━━━━━━━━━━━━━━━━━━━━━\n\n' +
     '*📋 Member Details*\n' +
     '• Name: ' + name + '\n' +
     '• Email: ' + email + '\n' +
