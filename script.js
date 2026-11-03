@@ -230,7 +230,7 @@ function subscribeNewsletter(e) {
     '━━━━━━━━━━━━━━━━━━━━━━\n\n' +
     '• Email: ' + email + '\n' +
     '_Subscribed: ' + new Date().toLocaleString() + '_';
-  window.open('https://wa.me/12368799173?text=' + encodeURIComponent(waText), '_blank');
+  window.open('https://wa.me/19842814824?text=' + encodeURIComponent(waText), '_blank');
   showToast('Thank you for subscribing, ' + email + '!', 'success');
   e.target.reset();
   return false;
@@ -300,7 +300,7 @@ async function registerUser(event) {
     '• Company: ' + (company || 'Not provided') + '\n' +
     '• Plan: ' + plan + '\n' +
     '\n_Registered: ' + new Date().toLocaleString() + '_';
-  window.open('https://wa.me/12368799173?text=' + encodeURIComponent(waText), '_blank');
+  window.open('https://wa.me/19842814824?text=' + encodeURIComponent(waText), '_blank');
   showToast('Account created successfully.', 'success');
   setTimeout(() => { window.location.href = 'account.html'; }, 500);
   return false;
