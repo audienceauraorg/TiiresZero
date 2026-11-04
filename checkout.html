@@ -11,13 +11,18 @@
     .checkout-layout{display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:flex-start;}
     .checkout-section{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:24px;margin-bottom:20px;}
     .checkout-section h2{font-size:16px;font-weight:700;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:10px;}
-    .step-num{background:#e60000;color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
     .form-row.single{grid-template-columns:1fr;}
     .form-group{display:flex;flex-direction:column;gap:6px;}
     .form-group label{font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:0.4px;}
-    .form-group input,.form-group select{padding:11px 13px;border:1px solid #ddd;border-radius:4px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;transition:border-color .2s;}
-    .form-group input:focus,.form-group select:focus{border-color:#e60000;}
+    .form-group input{padding:11px 13px;border:1px solid #ddd;border-radius:4px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;transition:border-color .2s;}
+    .form-group input:focus{border-color:#e60000;}
+    .country-picker{position:relative;}
+    #countryList{position:absolute;top:100%;left:0;right:0;z-index:10;max-height:200px;overflow-y:auto;margin:4px 0 0;padding:4px 0;list-style:none;background:#fff;border:1px solid #ddd;border-radius:4px;box-shadow:0 4px 14px rgba(0,0,0,.15);font-size:14px;}
+    #countryList li{padding:10px 13px;}
+    #countryList li[role=option]{cursor:pointer;}
+    #countryList li[role=option]:hover,#countryList li.active{background:#f0f0f0;}
+    #countryList li.country-empty{color:#999;}
     .order-summary-card{background:#f9f9f9;border:1px solid #e0e0e0;border-radius:8px;padding:24px;position:sticky;top:90px;}
     .os-title{font-size:15px;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e0e0e0;}
     .os-item{display:flex;gap:12px;align-items:center;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #f0f0f0;}
@@ -65,28 +70,14 @@
   <div class="container">
     <div class="checkout-layout">
       <div>
-        <!-- Contact -->
+        <!-- Delivery -->
         <div class="checkout-section">
-          <h2><span class="step-num">1</span>Contact Information</h2>
-          <div class="form-row single"><div class="form-group"><label>Email Address</label><input type="email" placeholder="you@example.com"/></div></div>
-          <div class="form-row"><div class="form-group"><label>First Name</label><input type="text" placeholder="John"/></div><div class="form-group"><label>Last Name</label><input type="text" placeholder="Doe"/></div></div>
-          <div class="form-row single"><div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(555) 000-0000"/></div></div>
-        </div>
-
-        <!-- Shipping -->
-        <div class="checkout-section">
-          <h2><span class="step-num">2</span>Shipping Address</h2>
-          <div class="form-row single"><div class="form-group"><label>Address Line 1</label><input type="text" placeholder="123 Main Street"/></div></div>
-          <div class="form-row single"><div class="form-group"><label>Address Line 2 (optional)</label><input type="text" placeholder="Apt, Suite, Unit, etc."/></div></div>
-          <div class="form-row"><div class="form-group"><label>City</label><input type="text" placeholder="City"/></div><div class="form-group" id="stateGroup"><label>State</label><select id="stateSelect"><option value="">Select State</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div></div>
-          <div class="form-row"><div class="form-group"><label>ZIP / Postal Code</label><input type="text" placeholder="00000"/></div><div class="form-group"><label>Country</label><select id="countrySelect" onchange="syncCountry()"><option>United States</option><option>Germany</option></select></div></div>
-        </div>
-
-        <!-- Additional Info -->
-        <div class="checkout-section">
-          <h2><span class="step-num">3</span>Additional Information</h2>
-          <div class="form-row single"><div class="form-group"><label>Company Name (optional)</label><input type="text" placeholder="Your company name"/></div></div>
-          <div class="form-row single"><div class="form-group"><label>Order Notes (optional)</label><textarea style="padding:11px 13px;border:1px solid #ddd;border-radius:4px;font-size:14px;font-family:'Poppins',sans-serif;outline:none;resize:vertical;min-height:80px;" placeholder="Any special instructions or notes for your order..."></textarea></div></div>
+          <h2>Delivery Details</h2>
+          <div class="form-row single"><div class="form-group"><label>Full Name</label><input type="text" id="fullName" autocomplete="name" placeholder="John Doe"/></div></div>
+          <div class="form-row single"><div class="form-group"><label>Email</label><input type="email" id="email" autocomplete="email" placeholder="you@example.com"/></div></div>
+          <div class="form-row single"><div class="form-group"><label>Phone</label><input type="tel" id="phone" autocomplete="tel" placeholder="+1 555 000 0000"/></div></div>
+          <div class="form-row single"><div class="form-group"><label>Address</label><input type="text" id="address" autocomplete="street-address" placeholder="Street, city, state, ZIP / postal code"/></div></div>
+          <div class="form-row single"><div class="form-group country-picker"><label for="countryInput">Country</label><input type="text" id="countryInput" role="combobox" aria-expanded="false" aria-controls="countryList" aria-autocomplete="list" autocomplete="off" placeholder="Search country..."/><ul id="countryList" role="listbox" hidden></ul></div></div>
         </div>
       </div>
 
@@ -135,21 +126,86 @@ function initPage() {
   document.getElementById('osTotal').textContent='$'+(subtotal+shipping).toFixed(2);
 }
 
-function syncCountry() {
-  document.getElementById('stateGroup').style.display = document.getElementById('countrySelect').value === 'Germany' ? 'none' : '';
+const COUNTRIES = ['United States','Germany','Afghanistan','Albania','Algeria','Andorra','Angola','Antigua and Barbuda','Argentina','Armenia','Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium','Belize','Benin','Bhutan','Bolivia','Bosnia and Herzegovina','Botswana','Brazil','Brunei','Bulgaria','Burkina Faso','Burundi','Cabo Verde','Cambodia','Cameroon','Canada','Central African Republic','Chad','Chile','China','Colombia','Comoros','Congo','Costa Rica','Croatia','Cuba','Cyprus','Czech Republic','Democratic Republic of the Congo','Denmark','Djibouti','Dominica','Dominican Republic','Ecuador','Egypt','El Salvador','Equatorial Guinea','Eritrea','Estonia','Eswatini','Ethiopia','Fiji','Finland','France','Gabon','Gambia','Georgia','Ghana','Greece','Grenada','Guatemala','Guinea','Guinea-Bissau','Guyana','Haiti','Honduras','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland','Israel','Italy','Ivory Coast','Jamaica','Japan','Jordan','Kazakhstan','Kenya','Kiribati','Kosovo','Kuwait','Kyrgyzstan','Laos','Latvia','Lebanon','Lesotho','Liberia','Libya','Liechtenstein','Lithuania','Luxembourg','Madagascar','Malawi','Malaysia','Maldives','Mali','Malta','Marshall Islands','Mauritania','Mauritius','Mexico','Micronesia','Moldova','Monaco','Mongolia','Montenegro','Morocco','Mozambique','Myanmar','Namibia','Nauru','Nepal','Netherlands','New Zealand','Nicaragua','Niger','Nigeria','North Korea','North Macedonia','Norway','Oman','Pakistan','Palau','Palestine','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Poland','Portugal','Qatar','Romania','Russia','Rwanda','Saint Kitts and Nevis','Saint Lucia','Saint Vincent and the Grenadines','Samoa','San Marino','Sao Tome and Principe','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone','Singapore','Slovakia','Slovenia','Solomon Islands','Somalia','South Africa','South Korea','South Sudan','Spain','Sri Lanka','Sudan','Suriname','Sweden','Switzerland','Syria','Taiwan','Tajikistan','Tanzania','Thailand','Timor-Leste','Togo','Tonga','Trinidad and Tobago','Tunisia','Turkey','Turkmenistan','Tuvalu','Uganda','Ukraine','United Arab Emirates','United Kingdom','Uruguay','Uzbekistan','Vanuatu','Vatican City','Venezuela','Vietnam','Yemen','Zambia','Zimbabwe'];
+const COUNTRY_ALIASES = {us:'United States',usa:'United States',america:'United States','united states of america':'United States',deutschland:'Germany',uk:'United Kingdom'};
+
+const countryInput = document.getElementById('countryInput');
+const countryList = document.getElementById('countryList');
+let countryMatches = [];
+let activeCountry = -1;
+
+function findCountry(value) {
+  const q = value.trim().toLowerCase();
+  return COUNTRY_ALIASES[q] || COUNTRIES.find(c => c.toLowerCase() === q) || '';
 }
+
+function openCountryList(query) {
+  const q = query.trim().toLowerCase();
+  const aliased = q ? Object.keys(COUNTRY_ALIASES).filter(a => a.startsWith(q)).map(a => COUNTRY_ALIASES[a]) : [];
+  countryMatches = [...new Set([...aliased, ...COUNTRIES.filter(c => c.toLowerCase().includes(q))])];
+  activeCountry = -1;
+  countryList.innerHTML = countryMatches.map(c => `<li role="option">${c}</li>`).join('') || '<li class="country-empty">No matching country</li>';
+  countryList.scrollTop = 0;
+  countryList.hidden = false;
+  countryInput.setAttribute('aria-expanded', 'true');
+}
+
+function closeCountryList() {
+  countryList.hidden = true;
+  countryInput.setAttribute('aria-expanded', 'false');
+}
+
+function moveActiveCountry(step) {
+  if (!countryMatches.length) return;
+  activeCountry = (activeCountry + step + countryMatches.length) % countryMatches.length;
+  [...countryList.children].forEach((li, i) => li.classList.toggle('active', i === activeCountry));
+  countryList.children[activeCountry].scrollIntoView({ block: 'nearest' });
+}
+
+countryInput.addEventListener('focus', () => {
+  openCountryList('');
+  countryInput.select();
+  if (window.innerWidth <= 768) countryInput.scrollIntoView({ block: 'start' });
+});
+countryInput.addEventListener('input', () => openCountryList(countryInput.value));
+countryInput.addEventListener('blur', () => {
+  closeCountryList();
+  countryInput.value = findCountry(countryInput.value) || countryInput.value;
+});
+countryInput.addEventListener('keydown', e => {
+  if (countryList.hidden && e.key !== 'ArrowDown') return;
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (countryList.hidden) openCountryList(countryInput.value);
+    moveActiveCountry(e.key === 'ArrowDown' ? 1 : -1);
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    const choice = countryMatches[Math.max(activeCountry, 0)];
+    if (choice) countryInput.value = choice;
+    closeCountryList();
+  } else if (e.key === 'Escape') {
+    closeCountryList();
+  }
+});
+// Keep focus on the input while the list is pressed or scrolled.
+countryList.addEventListener('mousedown', e => e.preventDefault());
+countryList.addEventListener('click', e => {
+  const option = e.target.closest('li[role=option]');
+  if (!option) return;
+  countryInput.value = option.textContent;
+  closeCountryList();
+});
 
 const ORDER_TEXT = {
   en: {
     emptyCart: 'Your cart is empty.',
-    missingContact: 'Please fill in your contact information.',
-    missingAddress: 'Please fill in your shipping address.',
+    missingDetails: 'Please fill in all fields.',
+    invalidEmail: 'Please enter a valid email address.',
+    invalidCountry: 'Please choose your country from the list.',
     title: 'NEW ORDER REQUEST',
     customer: 'Customer Details',
     name: 'Name',
     phone: 'Phone',
-    notProvided: 'Not provided',
-    company: 'Company',
     address: 'Shipping Address',
     items: 'Items Ordered',
     qty: 'Qty',
@@ -157,7 +213,6 @@ const ORDER_TEXT = {
     shipping: 'Shipping',
     free: 'FREE',
     total: 'TOTAL',
-    notes: 'Order Notes',
     submitted: 'Submitted',
     locale: undefined,
     doneTitle: 'Order Request Submitted!',
@@ -166,14 +221,13 @@ const ORDER_TEXT = {
   },
   de: {
     emptyCart: 'Ihr Warenkorb ist leer.',
-    missingContact: 'Bitte geben Sie Ihre Kontaktdaten ein.',
-    missingAddress: 'Bitte geben Sie Ihre Lieferadresse ein.',
+    missingDetails: 'Bitte füllen Sie alle Felder aus.',
+    invalidEmail: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+    invalidCountry: 'Bitte wählen Sie Ihr Land aus der Liste aus.',
     title: 'NEUE BESTELLANFRAGE',
     customer: 'Kundendaten',
     name: 'Name',
     phone: 'Telefon',
-    notProvided: 'Nicht angegeben',
-    company: 'Firma',
     address: 'Lieferadresse',
     items: 'Bestellte Artikel',
     qty: 'Menge',
@@ -181,7 +235,6 @@ const ORDER_TEXT = {
     shipping: 'Versand',
     free: 'KOSTENLOS',
     total: 'GESAMT',
-    notes: 'Anmerkungen',
     submitted: 'Gesendet',
     locale: 'de-DE',
     doneTitle: 'Bestellanfrage gesendet!',
@@ -193,45 +246,36 @@ const ORDER_TEXT = {
 function placeOrder(lang) {
   const t=ORDER_TEXT[lang];
   if(!cart.length){showToast(t.emptyCart);return;}
-  if(lang==='de'){document.getElementById('countrySelect').value='Germany';syncCountry();}
-  const inputs=document.querySelectorAll('.checkout-section input,.checkout-section select,.checkout-section textarea');
-  const email=inputs[0]?.value.trim();
-  const firstName=inputs[1]?.value.trim();
-  const lastName=inputs[2]?.value.trim();
-  const phone=inputs[3]?.value.trim();
-  if(!email||!firstName||!lastName){showToast(t.missingContact);return;}
-  const address1=inputs[4]?.value.trim();
-  const address2=inputs[5]?.value.trim();
-  const city=inputs[6]?.value.trim();
-  const state=inputs[7]?.value;
-  const zip=inputs[8]?.value.trim();
-  const inGermany=inputs[9]?.value==='Germany';
-  if(!address1||!city||!zip||(!inGermany&&!state)){showToast(t.missingAddress);return;}
-  const company=inputs[10]?.value.trim()||'';
-  const notes=document.querySelector('.checkout-section textarea')?.value.trim()||'';
+  if(lang==='de'&&!countryInput.value.trim())countryInput.value='Germany';
+  const fullName=document.getElementById('fullName').value.trim();
+  const emailInput=document.getElementById('email');
+  const email=emailInput.value.trim();
+  const phone=document.getElementById('phone').value.trim();
+  const address=document.getElementById('address').value.trim();
+  const country=findCountry(countryInput.value);
+  if(!fullName||!email||!phone||!address||!countryInput.value.trim()){showToast(t.missingDetails);return;}
+  if(!emailInput.checkValidity()){showToast(t.invalidEmail);return;}
+  if(!country){showToast(t.invalidCountry);return;}
   const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
   const shipping=subtotal>=500?0:49.99;
   const itemsList=cart.map(function(i,idx){return '  '+(idx+1)+'. '+i.brand+' '+i.name+'\n     '+t.qty+': '+i.qty+' | $'+(i.price*i.qty).toFixed(2);}).join('\n');
-  const place=inGermany?zip+' '+city+'\n'+(lang==='de'?'Deutschland':'Germany'):city+', '+state+' '+zip;
   var waText='━━━━━━━━━━━━━━━━━━━━━━\n'+
     '*🛒 '+t.title+'*\n'+
     '_Double Coin Heavy Duty Truck Warehouse_\n'+
     '━━━━━━━━━━━━━━━━━━━━━━\n\n'+
     '*📋 '+t.customer+'*\n'+
-    '• '+t.name+': '+firstName+' '+lastName+'\n'+
+    '• '+t.name+': '+fullName+'\n'+
     '• Email: '+email+'\n'+
-    '• '+t.phone+': '+(phone||t.notProvided)+'\n'+
-    (company?'• '+t.company+': '+company+'\n':'')+
+    '• '+t.phone+': '+phone+'\n'+
     '\n*📦 '+t.address+'*\n'+
-    address1+(address2?', '+address2:'')+'\n'+
-    place+'\n'+
+    address+'\n'+
+    (lang==='de'&&country==='Germany'?'Deutschland':country)+'\n'+
     '\n*🔧 '+t.items+'*\n'+itemsList+'\n'+
     '\n━━━━━━━━━━━━━━━━━━━━━━\n'+
     '  '+t.subtotal+': $'+subtotal.toFixed(2)+'\n'+
     '  '+t.shipping+': '+(shipping===0?t.free:'$'+shipping.toFixed(2))+'\n'+
     '  *'+t.total+': $'+(subtotal+shipping).toFixed(2)+'*\n'+
     '━━━━━━━━━━━━━━━━━━━━━━\n'+
-    (notes?'\n*📝 '+t.notes+'*\n'+notes+'\n':'')+
     '\n_'+t.submitted+': '+new Date().toLocaleString(t.locale)+'_';
   openWhatsAppOrder(lang,waText);
   cart=[];saveCart();
